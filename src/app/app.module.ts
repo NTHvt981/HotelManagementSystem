@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { SlideMenuModule } from 'primeng/slidemenu';
+<<<<<<< HEAD
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
@@ -19,6 +20,9 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
 import {ButtonModule} from 'primeng/button';
+=======
+import { InputTextModule } from 'primeng/inputtext';
+>>>>>>> use-primeflex
 
 import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-nhan-vien.component';
 import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.component';

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { InputTextModule } from 'primeng/inputtext';
+
 import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-nhan-vien.component';
 import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.component';
 import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.component';
@@ -26,6 +28,7 @@ import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.c
     AppRoutingModule,
 
     SlideMenuModule,
+    InputTextModule
     
   ],
   providers: [],

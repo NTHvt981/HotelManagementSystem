@@ -15,13 +15,16 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Tra cứu nhân viên'
+        label: 'Tra cứu nhân viên',
+        routerLink: '/tra-cuu-nhan-vien'
       },
       {
-        label: 'Tra cứu khách hảng'
+        label: 'Tra cứu khách hàng',
+        routerLink: '/tra-cuu-khach'
       },
       {
-        label: 'Tra cứu phòng'
+        label: 'Tra cứu phòng',
+        routerLink: '/tra-cuu-phong'
       },
       {
         label: 'Thống kê doanh thu'

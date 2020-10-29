@@ -1,0 +1,107 @@
+<p>chi-tiet-nhan-vien works!</p>
+
+{{nhanVien | json}}
+
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label for="maNhanVien">Mã</label>
+        <input id="maNhanVien" [(ngModel)]="nhanVien.Ma" type="text" pInputText 
+        [(disabled)]="!editable"> 
+    </div>
+    <div class="p-field p-col-8">
+        <label for="tenNhanVien">Họ tên</label>
+        <input id="tenNhanVien" [(ngModel)]="nhanVien.Ten" type="text" pInputText 
+        [(disabled)]="!editable"> 
+    </div>
+
+    <div class="p-col-4">
+    <div class="p-field">Giới tính</div>
+    <div class="p-formgroup-inline">
+        <div class="p-field-radiobutton">
+        <p-radioButton name="gioiTinh" value="Nam" [(ngModel)]="nhanVien.GioiTinh" 
+            inputId="gtNam" label="Nam"
+            [(disabled)]="!editable"></p-radioButton>
+        </div>
+        <div class="p-field-radiobutton">
+        <p-radioButton name="gioiTinh" value="Nữ" [(ngModel)]="nhanVien.GioiTinh" 
+            inputId="gtNu" label="Nữ"
+            [(disabled)]="!editable"></p-radioButton>
+        </div>
+    </div>
+    </div>
+
+    <div class="p-field p-col-8">
+        <label for="sdtNhanVien">Số điện thoại</label>
+        <input id="sdtNhanVien" [(ngModel)]="nhanVien.SoDienThoai" type="text" pInputText 
+        [(disabled)]="!editable"> 
+        <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+    </div>
+    
+    <div class="p-col-4">
+    <p-card header="{{nhanVien.Ten}}" subheader="{{nhanVien.ChucVu}}" styleClass="p-card-shadow">
+        <p-header>
+            <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+        </p-header>
+        <ng-template pTemplate="footer">
+            <p-fileUpload  name="demo[]" mode="basic"
+                customUpload="true" accept="image/*" maxFileSize="1000000" 
+                (uploadHandler)="onImageUpload($event)">
+            </p-fileUpload>
+            <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+        </ng-template>
+    </p-card>
+    </div>
+    
+    <div class="p-col-8">
+        <div class="p-field">
+            <label for="dcNhanVien">Địa chỉ</label>
+            <textarea pInputTextarea id="dcNhanVien" [(ngModel)]="nhanVien.DiaChi" 
+            [rows]="6" [cols]="30" autoResize="autoResize"
+            [(disabled)]="!editable"> </textarea>
+        </div>
+    
+        <div class="p-field">
+            <p>Chức vụ</p>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="chucVu" 
+                value="Nhân viên lễ tân"  label="Nhân viên lễ tân"
+                [(ngModel)]="nhanVien.ChucVu" 
+                inputId="lt"
+                [(disabled)]="!editable"></p-radioButton>
+            </div>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="chucVu" 
+                value="Nhân viên quản lý" label="Nhân viên quản lý"
+                [(ngModel)]="nhanVien.ChucVu" 
+                inputId="ql"
+                [(disabled)]="!editable"></p-radioButton>
+            </div>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="chucVu" 
+                value="Nhân viên dịch vụ" label="Nhân viên dịch vụ"
+                [(ngModel)]="nhanVien.ChucVu" 
+                inputId="dv"
+                [(disabled)]="!editable"></p-radioButton>
+            </div>
+        </div>
+        
+        <div class="p-field">
+            <label for="mucLuong">Mức lương</label>
+            <p-inputNumber id="mucLuong" [(ngModel)]="nhanVien.Luong" 
+            [(disabled)]="!editable"> </p-inputNumber>
+            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+        </div>
+
+        <!-- sửa nhân viên -->
+        <div class="p-d-flex p-jc-end p-ai-center">
+            <p-toggleButton [(ngModel)]="editable" onLabel="Chỉnh Sửa" offLabel="Chỉ Xem" onIcon="pi pi-check" offIcon="pi pi-times"
+                [style]="{'width': '10em'}"
+            ></p-toggleButton>
+            <p-button label="Lưu"  class="p-m-2"  
+                (onClick)="chinhSua($event)" [(disabled)]="!editable"></p-button>
+            <p-button label="Xóa"  class="p-m-2"  
+                (onClick)="xoa($event)"></p-button>
+        </div>
+    </div>
+    
+</div>

@@ -1,3 +1,5 @@
+import { NhanVien } from './models/nhan-vien';
+import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-tiet-nhan-vien.component';
 import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.component';
 import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-nhan-vien.component';
 import { NgModule } from '@angular/core';
@@ -19,6 +21,11 @@ const routes: Routes = [
     pathMatch: 'full',
     path: 'tra-cuu-phong',
     component: TraCuuPhongComponent
+  },
+  {
+    path: 'chi-tiet-nhan-vien',
+    component: ChiTietNhanVienComponent,
+    data: {nhanVien: NhanVien}
   }
 ];
 

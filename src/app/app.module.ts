@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { SlideMenuModule } from 'primeng/slidemenu';
-<<<<<<< HEAD
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
@@ -20,14 +20,16 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
 import {ButtonModule} from 'primeng/button';
-=======
 import { InputTextModule } from 'primeng/inputtext';
->>>>>>> use-primeflex
+import {TableModule} from 'primeng/table';
+import {CardModule} from 'primeng/card';
+import {FileUploadModule} from 'primeng/fileupload';
 
 import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-nhan-vien.component';
 import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.component';
 import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.component';
 import { FormsModule } from '@angular/forms';
+import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-tiet-nhan-vien.component';
 
 
 @NgModule({
@@ -36,12 +38,14 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     TraCuuNhanVienComponent,
     TraCuuKhachComponent,
-    TraCuuPhongComponent
+    TraCuuPhongComponent,
+    ChiTietNhanVienComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
 
     SlideMenuModule,
     InputTextareaModule,
@@ -56,6 +60,10 @@ import { FormsModule } from '@angular/forms';
     CheckboxModule,
     CalendarModule,
     ButtonModule,
+    InputTextModule,
+    TableModule,
+    CardModule,
+    FileUploadModule,
 
     FormsModule
     

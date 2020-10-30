@@ -31,6 +31,42 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Thông tin cá nhân'
+      },
+
+      //Nhân viên quản lý
+      {
+        label: 'Chức năng quản lý',
+        items: [
+          {
+            label: 'Thêm nhân viên',
+            routerLink: '/them-nhan-vien'
+          },
+          {
+            label: 'Thêm phòng'
+          },
+          {
+            label: 'Tra cứu dịch vụ'
+          },
+          {
+            label: 'Thêm dịch vụ'
+          }
+        ]
+      }
+
+      //Nhân viên lễ tân
+      {
+        label: 'Chức năng lễ tân',
+        items: [
+          {
+            label: 'Thêm khách hàng'
+          },
+          {
+            label: 'Lập phiếu thuê phòng'
+          },
+          {
+            label: 'Lập hóa đơn'
+          }
+        ]
       }
     ]
   }

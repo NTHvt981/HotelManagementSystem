@@ -1,3 +1,4 @@
+import { ThemNhanVienComponent } from './components/them-nhan-vien/them-nhan-vien.component';
 import { NhanVien } from './models/nhan-vien';
 import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-tiet-nhan-vien.component';
 import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.component';
@@ -12,6 +13,12 @@ const routes: Routes = [
     path: 'tra-cuu-nhan-vien',
     component: TraCuuNhanVienComponent
   },
+  {
+    pathMatch: 'full',
+    path: 'them-nhan-vien',
+    component: ThemNhanVienComponent
+  },
+
   {
     pathMatch: 'full',
     path: 'tra-cuu-khach',

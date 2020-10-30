@@ -30,6 +30,9 @@ import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.c
 import { TraCuuPhongComponent } from './components/tra-cuu-phong/tra-cuu-phong.component';
 import { FormsModule } from '@angular/forms';
 import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-tiet-nhan-vien.component';
+import { ThemNhanVienComponent } from './components/them-nhan-vien/them-nhan-vien.component';
+import { ThemKhachComponent } from './components/them-khach/them-khach.component';
+import { ChiTietKhachComponent } from './components/chi-tiet-khach/chi-tiet-khach.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-ti
     TraCuuNhanVienComponent,
     TraCuuKhachComponent,
     TraCuuPhongComponent,
-    ChiTietNhanVienComponent
+    ChiTietNhanVienComponent,
+    ThemNhanVienComponent,
+    ThemKhachComponent,
+    ChiTietKhachComponent
   ],
   imports: [
     BrowserModule,

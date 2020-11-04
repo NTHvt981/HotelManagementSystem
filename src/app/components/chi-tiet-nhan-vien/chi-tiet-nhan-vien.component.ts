@@ -15,8 +15,11 @@ export class ChiTietNhanVienComponent implements OnInit {
   constructor(private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    if (history.state.data == undefined)
+      this.router.navigateByUrl('/tra-cuu-nhan-vien')
+
     //this line get the data from url
-    this.nhanVien = history.state;
+    this.nhanVien = history.state.data;
   }
 
   onImageUpload($event) {

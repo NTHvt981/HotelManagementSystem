@@ -67,10 +67,36 @@ export class TraCuuNhanVienComponent implements OnInit {
   xemChiTiet($event) {
     console.log('xem chi tiet')
     
-    this.router.navigateByUrl('/chi-tiet-nhan-vien', {state: this.selectedNhanVien});
+    this.router.navigateByUrl('/chi-tiet-nhan-vien', 
+      {
+        state: {
+          data: this.selectedNhanVien
+        }
+      });
   }
 
   timKiem($event) {
     console.log("Tìm kiếm!");
+
+    let _nhanViens: NhanVien[] = [];
+
+    this.nhanViens.forEach((nv, i) => {
+      if (
+        nv.Ma.includes(this.maNhanVien) &&
+        nv.Ten.includes(this.tenNhanVien) &&
+        nv.GioiTinh.includes(this.gtNhanVien) &&
+        nv.SoDienThoai.includes(this.sdtNhanVien)
+        )
+        _nhanViens.push(nv);
+    })
+
+    this.nhanViens = _nhanViens;
+  }
+
+  taiLai($event) {
+    this.maNhanVien = null;
+    this.tenNhanVien = null;
+    this.sdtNhanVien = null;
+    this.gtNhanVien = null;
   }
 }

@@ -46,6 +46,9 @@ sđt {{sdtNhanVien}} <br>
     <p-inputSwitch [(ngModel)]="editable"></p-inputSwitch>
     <p-button label="Tìm kiếm"  class="p-m-2"  
         (onClick)="timKiem($event)" [(disabled)]="!editable"></p-button>
+
+    <p-button label="Tải lại"  class="p-m-2"  
+        (onClick)="taiLai($event)"></p-button>
 </div>
 
 

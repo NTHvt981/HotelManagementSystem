@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
             label: 'Thêm dịch vụ'
           }
         ]
-      }
+      },
 
       //Nhân viên lễ tân
       {

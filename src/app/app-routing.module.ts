@@ -1,3 +1,7 @@
+import { Xe } from './models/xe';
+import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.component';
+import { ThemXeComponent } from './components/them-xe/them-xe.component';
+import { TraCuuXeComponent } from './components/tra-cuu-xe/tra-cuu-xe.component';
 import { MonAn } from './models/mon-an';
 import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon-an.component';
 import { ThemMonAnComponent } from './components/them-mon-an/them-mon-an.component';
@@ -82,6 +86,21 @@ const routes: Routes = [
     data: {monAn: MonAn}
   },
 
+  {
+    pathMatch: 'full',
+    path: 'tra-cuu-xe',
+    component: TraCuuXeComponent
+  },
+  {
+    pathMatch: 'full',
+    path: 'them-xe',
+    component: ThemXeComponent
+  },
+  {
+    path: 'chi-tiet-xe',
+    component: ChiTietXeComponent,
+    data: {xe: Xe}
+  },
 
 ];
 

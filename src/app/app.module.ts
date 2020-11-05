@@ -38,6 +38,9 @@ import { ChiTietPhongComponent } from './components/chi-tiet-phong/chi-tiet-phon
 import { ThemMonAnComponent } from './components/them-mon-an/them-mon-an.component';
 import { TraCuuMonAnComponent } from './components/tra-cuu-mon-an/tra-cuu-mon-an.component';
 import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon-an.component';
+import { TraCuuXeComponent } from './components/tra-cuu-xe/tra-cuu-xe.component';
+import { ThemXeComponent } from './components/them-xe/them-xe.component';
+import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.component';
 
 
 @NgModule({
@@ -55,7 +58,10 @@ import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon
     ChiTietPhongComponent,
     ThemMonAnComponent,
     TraCuuMonAnComponent,
-    ChiTietMonAnComponent
+    ChiTietMonAnComponent,
+    TraCuuXeComponent,
+    ThemXeComponent,
+    ChiTietXeComponent
   ],
   imports: [
     BrowserModule,

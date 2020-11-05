@@ -1,0 +1,44 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-col">
+        <p-card styleClass="p-card-shadow">
+            <p-header>
+                <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+            </p-header>
+            <ng-template pTemplate="footer">
+                <p-fileUpload  name="demo[]" mode="basic"
+                    customUpload="true" accept="image/*" maxFileSize="1000000" 
+                    (uploadHandler)="onImageUpload($event)"  >
+                </p-fileUpload>
+                <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+            </ng-template>
+        </p-card>
+    </div>
+
+    <div class="p-col">
+        <div class="p-field">
+            <label for="ma">Mã xe</label>
+            <input id="ma" [(ngModel)]="xe.Ma" type="text" pInputText disabled> 
+        </div>
+        <div class="p-field">
+            <label for="ten">Tên xe</label>
+            <input id="ten" [(ngModel)]="xe.Ten" type="text" pInputText > 
+        </div>
+
+        <div class="p-field">
+            <label for="giaGio">Giá theo giờ</label>
+            <p-inputNumber id="giaGio" [(ngModel)]="xe.GiaTheoGio"></p-inputNumber>
+        </div>
+
+        <div class="p-field">
+            <label for="giaNgay">Giá theo ngày</label>
+            <p-inputNumber id="giaNgay" [(ngModel)]="xe.GiaTheoNgay"></p-inputNumber>
+        </div>
+
+        <div class="p-d-flex p-jc-end p-ai-center">
+            <p-button label="Lưu"  class="p-m-2"  
+                (onClick)="them($event)"></p-button>
+        </div>
+    </div>
+    
+</div>
+

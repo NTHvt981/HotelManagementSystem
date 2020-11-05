@@ -1,12 +1,10 @@
-<p>chi-tiet-nhan-vien works!</p>
-
 {{nhanVien | json}}
 
 <div class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-4">
         <label for="maNhanVien">Mã</label>
         <input id="maNhanVien" [(ngModel)]="nhanVien.Ma" type="text" pInputText 
-        [(disabled)]="!editable"> 
+        disabled> 
     </div>
     <div class="p-field p-col-8">
         <label for="tenNhanVien">Họ tên</label>

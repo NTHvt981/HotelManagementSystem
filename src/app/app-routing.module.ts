@@ -1,3 +1,6 @@
+import { Phong } from './models/phong';
+import { ChiTietPhongComponent } from './components/chi-tiet-phong/chi-tiet-phong.component';
+import { ThemPhongComponent } from './components/them-phong/them-phong.component';
 import { KhachHang } from './models/khach-hang';
 import { ThemKhachComponent } from './components/them-khach/them-khach.component';
 import { ChiTietKhachComponent } from './components/chi-tiet-khach/chi-tiet-khach.component';
@@ -47,6 +50,16 @@ const routes: Routes = [
     pathMatch: 'full',
     path: 'tra-cuu-phong',
     component: TraCuuPhongComponent
+  },
+  {
+    pathMatch: 'full',
+    path: 'them-phong',
+    component: ThemPhongComponent
+  },
+  {
+    path: 'chi-tiet-phong',
+    component: ChiTietPhongComponent,
+    data: {phong: Phong}
   },
 ];
 

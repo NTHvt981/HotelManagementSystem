@@ -18,5 +18,5 @@ export class NhanVien {
         NhanVien.prototype.GioiTinh = "Nam";
         NhanVien.prototype.HinhAnh = 
             "https://winaero.com/blog/wp-content/uploads/2018/08/Windows-10-user-icon-big.png";
-      })();
+    })();
 }

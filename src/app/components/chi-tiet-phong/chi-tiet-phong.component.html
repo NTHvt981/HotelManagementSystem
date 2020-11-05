@@ -1,0 +1,76 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-col">
+        <p-card styleClass="p-card-shadow">
+            <p-header>
+                <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+            </p-header>
+            <ng-template pTemplate="footer">
+                <p-fileUpload  name="demo[]" mode="basic"
+                    customUpload="true" accept="image/*" maxFileSize="1000000" 
+                    (uploadHandler)="onImageUpload($event)"  >
+                </p-fileUpload>
+                <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+            </ng-template>
+        </p-card>
+    </div>
+
+    <div class="p-col">
+        <div class="p-field">
+            <label for="ma">Mã</label>
+            <input id="ma" [(ngModel)]="phong.Ma" type="text" pInputText disabled> 
+        </div>
+        <div class="p-field">
+            <label for="soPhong">Số phòng</label>
+            <input id="soPhong" [(ngModel)]="phong.SoPhong" type="text" pInputText 
+            [(disabled)]="!editable"> 
+        </div>
+
+        <div class="p-field">
+            <label for="soTang">Số tầng</label>
+            <p-inputNumber id="soTang" [(ngModel)]="phong.SoTang"
+            [(disabled)]="!editable"></p-inputNumber>
+        </div>
+
+        <div class="p-field">
+            <label for="soGiuong">Số giường</label>
+            <p-inputNumber id="soGiuong" [(ngModel)]="phong.SoGiuong"
+            [(disabled)]="!editable"></p-inputNumber>
+        </div>
+
+        <div class="p-field">
+            <label for="loai">Loại phòng</label>
+            <p-dropdown id="loai" [options]="loaiOptions"  
+                [(ngModel)]="phong.LoaiPhong" [(disabled)]="!editable"></p-dropdown>
+        </div>
+
+        <div class="p-field">
+            <label for="giaGio">Giá theo giờ</label>
+            <p-inputNumber id="giaGio" [(ngModel)]="phong.GiaTheoGio"
+                [(disabled)]="!editable"></p-inputNumber>
+        </div>
+
+        <div class="p-field">
+            <label for="giaNgay">Giá theo ngày</label>
+            <p-inputNumber id="giaNgay" [(ngModel)]="phong.GiaTheoNgay"
+                [(disabled)]="!editable"></p-inputNumber>
+        </div>
+
+        <div class="p-field">
+            <label for="tinhTrang">Tình trạng</label>
+            <p-dropdown id="tinhTrang" [options]="tinhTrangOptions"  
+                [(ngModel)]="phong.TinhTrang"
+                [(disabled)]="!editable"></p-dropdown>
+        </div>
+
+        <div class="p-d-flex p-jc-end p-ai-center">
+            <p-toggleButton [(ngModel)]="editable" onLabel='Chỉnh_Sửa' offLabel="Chỉ Xem" 
+                [style]="{'width': '10em'}"
+            ></p-toggleButton>
+            <p-button label="Lưu"  class="p-m-2"  
+                (onClick)="chinhSua($event)" [(disabled)]="!editable"></p-button>
+            <p-button label="Xóa"  class="p-m-2"  
+                (onClick)="xoa($event)"></p-button>
+        </div>
+    </div>
+    
+</div>

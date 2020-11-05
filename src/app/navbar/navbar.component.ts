@@ -15,57 +15,52 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Tra cứu nhân viên',
-        routerLink: '/tra-cuu-nhan-vien'
+        label: 'Thông tin cá nhân',
+        routerLink: 'thong-tin-ca-nhan'
       },
       {
-        label: 'Tra cứu khách hàng',
-        routerLink: '/tra-cuu-khach'
+        label: 'Tra cứu phiếu thuê phòng',
+        routerLink: 'tra-cuu-thue-phong'
       },
-      {
-        label: 'Tra cứu phòng',
-        routerLink: '/tra-cuu-phong'
-      },
-      {
-        label: 'Thống kê doanh thu'
-      },
-      {
-        label: 'Thông tin cá nhân'
-      },
-
-      //Nhân viên quản lý
       {
         label: 'Chức năng quản lý',
         items: [
-          {
-            label: 'Thêm nhân viên',
-            routerLink: '/them-nhan-vien'
-          },
-          {
-            label: 'Thêm phòng'
-          },
-          {
-            label: 'Tra cứu dịch vụ'
-          },
-          {
-            label: 'Thêm dịch vụ'
-          }
+          {label: 'Thêm nhân viên', routerLink:'them-nhan-vien'},
+          {label: 'Tra cứu nhân viên', routerLink:'tra-cuu-nhan-vien'},
+
+          {label: 'Tra cứu khách hàng', routerLink:'tra-cuu-khach'},
+
+          {label: 'Thêm phòng', routerLink:'them-phong'},
+          {label: 'Tra cứu phòng', routerLink:'tra-cuu-phong'},
+          
+          {label: 'Thêm món ăn', routerLink:'them-mon-an'},
+          {label: 'Tra cứu món ăn', routerLink:'tra-cuu-mon-an'},
+          
+          {label: 'Thêm xe', routerLink:'them-xe'},
+          {label: 'Tra cứu xe', routerLink:'tra-cuu-xe'},
+
+          {label: 'Thống kê doanh thu', routerLink:'thong-ke'}
         ]
       },
-
-      //Nhân viên lễ tân
       {
         label: 'Chức năng lễ tân',
         items: [
-          {
-            label: 'Thêm khách hàng'
-          },
-          {
-            label: 'Lập phiếu thuê phòng'
-          },
-          {
-            label: 'Lập hóa đơn'
-          }
+          {label: 'Thêm khách hàng', routerLink:'them-khach'},
+          {label: 'Tra cứu khách hàng', routerLink:'tra-cuu-khach'},
+          {label: 'Tra cứu phòng', routerLink:'tra-cuu-phong'},
+          {label: 'Thống kê doanh thu', routerLink:'thong-ke'}
+        ]
+      },
+      {
+        label: 'Chức năng nhân viên phục vụ thức ăn',
+        items: [
+          {label: 'Tra cứu món ăn', routerLink:'tra-cuu-mon-an'}
+        ]
+      },
+      {
+        label: 'Chức năng nhân viên thuê xe',
+        items: [
+          {label: 'Tra cứu xe', routerLink:'tra-cuu-xe'}
         ]
       }
     ]

@@ -1,1 +1,64 @@
-<p>them-khach works!</p>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-4">
+        <label for="ma">Mã</label>
+        <input id="ma" [(ngModel)]="khachHang.Ma" type="text" pInputText > 
+    </div>
+    <div class="p-field p-col-8">
+        <label for="ten">Họ tên</label>
+        <input id="ten" [(ngModel)]="khachHang.Ten" type="text" pInputText > 
+    </div>
+
+    <div class="p-col-4">
+    <div class="p-field">Giới tính</div>
+    <div class="p-formgroup-inline">
+        <div class="p-field-radiobutton">
+        <p-radioButton name="gioiTinh" value="Nam" [(ngModel)]="khachHang.GioiTinh" 
+            inputId="gtNam" label="Nam"></p-radioButton>
+        </div>
+        <div class="p-field-radiobutton">
+        <p-radioButton name="gioiTinh" value="Nữ" [(ngModel)]="khachHang.GioiTinh" 
+            inputId="gtNu" label="Nữ"></p-radioButton>
+        </div>
+    </div>
+    </div>
+
+    <div class="p-field p-col-8">
+        <label for="sdt">Số điện thoại</label>
+        <input id="sdt" [(ngModel)]="khachHang.SoDienThoai" type="text" pInputText > 
+    </div>
+    
+    <div class="p-col-4">
+    <p-card header="{{khachHang.Ten}}"styleClass="p-card-shadow">
+        <p-header>
+            <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+        </p-header>
+        <ng-template pTemplate="footer">
+            <p-fileUpload  name="demo[]" mode="basic"
+                customUpload="true" accept="image/*" maxFileSize="1000000" 
+                (uploadHandler)="onImageUpload($event)"  >
+            </p-fileUpload>
+            <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+        </ng-template>
+    </p-card>
+    </div>
+    
+    <div class="p-col-8">
+        <div class="p-field">
+            <label for="cmnd">CMND</label>
+            <input id="cmnd" [(ngModel)]="khachHang.Cmnd" type="text" pInputText > 
+            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+        </div>
+
+        <div class="p-field">
+            <label for="ngaySinh">Ngày sinh</label>
+            <p-calendar id="ngaySinh" [(ngModel)]="khachHang.NgaySinh" 
+                [showIcon]="true"  ></p-calendar>
+        </div>
+
+        <div class="p-d-flex p-jc-end p-ai-center">
+            <p-button label="Lưu"  class="p-m-2"  
+                (onClick)="them($event)"></p-button>
+        </div>
+    </div>
+    
+</div>

@@ -1,3 +1,6 @@
+import { KhachHang } from './models/khach-hang';
+import { ThemKhachComponent } from './components/them-khach/them-khach.component';
+import { ChiTietKhachComponent } from './components/chi-tiet-khach/chi-tiet-khach.component';
 import { ThemNhanVienComponent } from './components/them-nhan-vien/them-nhan-vien.component';
 import { NhanVien } from './models/nhan-vien';
 import { ChiTietNhanVienComponent } from './components/chi-tiet-nhan-vien/chi-tiet-nhan-vien.component';
@@ -18,6 +21,11 @@ const routes: Routes = [
     path: 'them-nhan-vien',
     component: ThemNhanVienComponent
   },
+  {
+    path: 'chi-tiet-nhan-vien',
+    component: ChiTietNhanVienComponent,
+    data: {nhanVien: NhanVien}
+  },
 
   {
     pathMatch: 'full',
@@ -26,14 +34,20 @@ const routes: Routes = [
   },
   {
     pathMatch: 'full',
+    path: 'them-khach',
+    component: ThemKhachComponent
+  },
+  {
+    path: 'chi-tiet-khach',
+    component: ChiTietKhachComponent,
+    data: {khachHang: KhachHang}
+  },
+
+  {
+    pathMatch: 'full',
     path: 'tra-cuu-phong',
     component: TraCuuPhongComponent
   },
-  {
-    path: 'chi-tiet-nhan-vien',
-    component: ChiTietNhanVienComponent,
-    data: {nhanVien: NhanVien}
-  }
 ];
 
 @NgModule({

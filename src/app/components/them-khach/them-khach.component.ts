@@ -1,3 +1,4 @@
+import { KhachHang } from './../../models/khach-hang';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./them-khach.component.css']
 })
 export class ThemKhachComponent implements OnInit {
+  khachHang: KhachHang = new KhachHang();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onImageUpload($event) {
+
+  }
+
+  them($event) {
+
+  }
 }

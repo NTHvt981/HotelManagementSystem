@@ -52,7 +52,20 @@
     </p-card>
     </div>
     
-    <div class="p-col-8">
+    <div class="p-col-8">    
+        <div class="p-field">
+            <label for="cmnd">CMND</label>
+            <input id="cmnd" [(ngModel)]="nhanVien.Cmnd" type="text" pInputText 
+            [(disabled)]="!editable"> 
+            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+        </div>
+
+        <div class="p-field">
+            <label for="ngaySinh">Ngày sinh</label>
+            <p-calendar id="ngaySinh" [(ngModel)]="nhanVien.NgaySinh" 
+                [showIcon]="true" [(disabled)]="!editable"></p-calendar>
+        </div>
+
         <div class="p-field">
             <label for="dcNhanVien">Địa chỉ</label>
             <textarea pInputTextarea id="dcNhanVien" [(ngModel)]="nhanVien.DiaChi" 
@@ -78,7 +91,14 @@
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
-                value="Nhân viên dịch vụ" label="Nhân viên dịch vụ"
+                value="Nhân viên thức ăn" label="Nhân viên phục vụ thức ăn"
+                [(ngModel)]="nhanVien.ChucVu" 
+                inputId="dv"
+                [(disabled)]="!editable"></p-radioButton>
+            </div>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="chucVu" 
+                value="Nhân viên thuê xe" label="Nhân viên thuê xe"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"
                 [(disabled)]="!editable"></p-radioButton>
@@ -94,7 +114,7 @@
 
         <!-- sửa nhân viên -->
         <div class="p-d-flex p-jc-end p-ai-center">
-            <p-toggleButton [(ngModel)]="editable" onLabel="Chỉnh Sửa" offLabel="Chỉ Xem" onIcon="pi pi-check" offIcon="pi pi-times"
+            <p-toggleButton [(ngModel)]="editable" onLabel='Chỉnh_Sửa' offLabel="Chỉ Xem" 
                 [style]="{'width': '10em'}"
             ></p-toggleButton>
             <p-button label="Lưu"  class="p-m-2"  

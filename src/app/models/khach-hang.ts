@@ -8,4 +8,15 @@ export class KhachHang {
     HinhAnh: string;
 
     TinhTrang: string;
+
+    public constructor(init?:Partial<KhachHang>) {
+        Object.assign(this, init);
+    }
+    
+    protected static SInit = (() => {
+        KhachHang.prototype.GioiTinh = "Nam";
+        KhachHang.prototype.TinhTrang = "Không thuê";
+        KhachHang.prototype.HinhAnh = 
+            "https://winaero.com/blog/wp-content/uploads/2018/08/Windows-10-user-icon-big.png";
+      })();
 }

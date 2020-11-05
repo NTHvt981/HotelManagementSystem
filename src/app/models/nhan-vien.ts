@@ -14,4 +14,9 @@ export class NhanVien {
     public constructor(init?:Partial<NhanVien>) {
         Object.assign(this, init);
     }
+    protected static SInit = (() => {
+        NhanVien.prototype.GioiTinh = "Nam";
+        NhanVien.prototype.HinhAnh = 
+            "https://winaero.com/blog/wp-content/uploads/2018/08/Windows-10-user-icon-big.png";
+      })();
 }

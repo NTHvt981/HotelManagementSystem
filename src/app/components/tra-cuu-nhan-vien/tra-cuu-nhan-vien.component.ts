@@ -27,7 +27,7 @@ export class TraCuuNhanVienComponent implements OnInit {
           Ma: (i*i + 1000).toString(),
           Ten: 'Nguyễn Hoàng A',
           GioiTinh: 'Nam',
-          ChucVu: 'Nhân viên dịch vụ',
+          ChucVu: 'Nhân viên thức ăn',
           Luong: 12_000_000,
           SoDienThoai: '123-4560-789'
         }));
@@ -44,15 +44,11 @@ export class TraCuuNhanVienComponent implements OnInit {
     }
   }
 
-  onNhanVienSelect($event) {
+  onSelect($event) {
     this.maNhanVien = this.selectedNhanVien.Ma;
     this.tenNhanVien = this.selectedNhanVien.Ten;
     this.gtNhanVien = this.selectedNhanVien.GioiTinh;
     this.sdtNhanVien = this.selectedNhanVien.SoDienThoai;
-  }
-
-  onNhanVienUnSelect($event) {
-    console.log("unselect");
   }
 
   xoa($event) {
@@ -98,5 +94,9 @@ export class TraCuuNhanVienComponent implements OnInit {
     this.tenNhanVien = null;
     this.sdtNhanVien = null;
     this.gtNhanVien = null;
+  }
+
+  tinhLuong($event) {
+
   }
 }

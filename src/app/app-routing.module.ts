@@ -1,3 +1,5 @@
+import { TraCuuPhieuThuePhongComponent } from './components/tra-cuu-phieu-thue-phong/tra-cuu-phieu-thue-phong.component';
+import { LapPhieuThuePhongComponent } from './components/lap-phieu-thue-phong/lap-phieu-thue-phong.component';
 import { Xe } from './models/xe';
 import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.component';
 import { ThemXeComponent } from './components/them-xe/them-xe.component';
@@ -102,6 +104,18 @@ const routes: Routes = [
     data: {xe: Xe}
   },
 
+  {
+    path: 'lap-phieu-thue-phong',
+    component: LapPhieuThuePhongComponent,
+    data: {
+      khachHang: KhachHang,
+      phong: Phong
+    }
+  },
+  {
+    path: 'tra-cuu-phieu-thue-phong',
+    component: TraCuuPhieuThuePhongComponent,
+  }
 ];
 
 @NgModule({

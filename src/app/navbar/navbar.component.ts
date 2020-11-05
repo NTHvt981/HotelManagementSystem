@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Tra cứu phiếu thuê phòng',
-        routerLink: 'tra-cuu-thue-phong'
+        routerLink: 'tra-cuu-phieu-thue-phong'
       },
       {
         label: 'Chức năng quản lý',

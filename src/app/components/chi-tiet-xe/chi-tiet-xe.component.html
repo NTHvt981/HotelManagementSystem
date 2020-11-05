@@ -28,12 +28,14 @@
         <div class="p-field">
             <label for="giaGio">Giá theo giờ</label>
             <p-inputNumber id="giaGio" [(ngModel)]="xe.GiaTheoGio"
+            mode="currency" currency="VND"
             [(disabled)]="!editable"></p-inputNumber>
         </div>
 
         <div class="p-field">
             <label for="giaNgay">Giá theo ngày</label>
             <p-inputNumber id="giaNgay" [(ngModel)]="xe.GiaTheoNgay"
+            mode="currency" currency="VND"
             [(disabled)]="!editable"></p-inputNumber>
         </div>
         

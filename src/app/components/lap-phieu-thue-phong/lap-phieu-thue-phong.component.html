@@ -1,0 +1,179 @@
+<h1>Thông tin phiếu thuê phòng</h1>
+
+<!-- Thể hiện toàn bộ thông tin khách hàng, không thể thay đổi -->
+<p-fieldset legend="Khách hàng" [toggleable]="true">
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-4">
+            <label for="ma">Mã</label>
+            <input id="ma" [(ngModel)]="khachHang.Ma" type="text" pInputText 
+            disabled> 
+        </div>
+        <div class="p-field p-col-8">
+            <label for="ten">Họ tên</label>
+            <input id="ten" [(ngModel)]="khachHang.Ten" type="text" pInputText 
+            disabled> 
+        </div>
+    
+        <div class="p-col-4">
+        <div class="p-field">Giới tính</div>
+        <div class="p-formgroup-inline">
+            <div class="p-field-radiobutton">
+            <p-radioButton name="gioiTinh" value="Nam" [(ngModel)]="khachHang.GioiTinh" 
+                inputId="gtNam" label="Nam"
+                disabled></p-radioButton>
+            </div>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="gioiTinh" value="Nữ" [(ngModel)]="khachHang.GioiTinh" 
+                inputId="gtNu" label="Nữ"
+                disabled></p-radioButton>
+            </div>
+        </div>
+        </div>
+    
+        <div class="p-field p-col-8">
+            <label for="sdt">Số điện thoại</label>
+            <input id="sdt" [(ngModel)]="khachHang.SoDienThoai" type="text" pInputText 
+            disabled> 
+            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+        </div>
+        
+        <div class="p-col-4">
+        <p-card header="{{khachHang.Ten}}"styleClass="p-card-shadow">
+            <p-header>
+                <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+            </p-header>
+            <ng-template pTemplate="footer">
+                <p-fileUpload  name="demo[]" mode="basic"
+                    customUpload="true" accept="image/*" maxFileSize="1000000" 
+                    (uploadHandler)="onImageUpload($event)" disabled>
+                </p-fileUpload>
+                <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+            </ng-template>
+        </p-card>
+        </div>
+        
+        <div class="p-col-8">
+            <div class="p-field">
+                <label for="cmnd">CMND</label>
+                <input id="cmnd" [(ngModel)]="khachHang.Cmnd" type="text" pInputText 
+                disabled> 
+                <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+            </div>
+    
+            <div class="p-field">
+                <label for="ngaySinh">Ngày sinh</label>
+                <p-calendar id="ngaySinh" [(ngModel)]="khachHang.NgaySinh" 
+                    [showIcon]="true" disabled></p-calendar>
+            </div>
+        </div>
+    </div>
+</p-fieldset>
+
+<!-- Thể hiện toàn bộ thông tin phòng, không thể thay đổi -->
+<p-fieldset legend="Phòng thuê" [toggleable]="true">
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-col">
+            <p-card styleClass="p-card-shadow">
+                <p-header>
+                    <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+                </p-header>
+                <ng-template pTemplate="footer">
+                    <p-fileUpload  name="demo[]" mode="basic"
+                        customUpload="true" accept="image/*" maxFileSize="1000000" 
+                        (uploadHandler)="onImageUpload($event)" disabled >
+                    </p-fileUpload>
+                    <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
+                </ng-template>
+            </p-card>
+        </div>
+    
+        <div class="p-col">
+            <div class="p-field">
+                <label for="ma">Mã</label>
+                <input id="ma" [(ngModel)]="phong.Ma" type="text" pInputText disabled> 
+            </div>
+            <div class="p-field">
+                <label for="soPhong">Số phòng</label>
+                <input id="soPhong" [(ngModel)]="phong.SoPhong" type="text" pInputText 
+                disabled> 
+            </div>
+    
+            <div class="p-field">
+                <label for="soTang">Số tầng</label>
+                <p-inputNumber id="soTang" [(ngModel)]="phong.SoTang"
+                disabled></p-inputNumber>
+            </div>
+    
+            <div class="p-field">
+                <label for="soGiuong">Số giường</label>
+                <p-inputNumber id="soGiuong" [(ngModel)]="phong.SoGiuong"
+                disabled></p-inputNumber>
+            </div>
+    
+            <div class="p-field">
+                <label for="loai">Loại phòng</label>
+                <input id="loai" [(ngModel)]="phong.LoaiPhong" type="text" pInputText disabled> 
+            </div>
+    
+            <div class="p-field">
+                <label for="giaGio">Giá theo giờ (VNĐ)</label>
+                <p-inputNumber id="giaGio" [(ngModel)]="phong.GiaTheoGio"
+                mode="currency" currency="VND"
+                    disabled></p-inputNumber>
+            </div>
+    
+            <div class="p-field">
+                <label for="giaNgay">Giá theo ngày (VNĐ)</label>
+                <p-inputNumber id="giaNgay" [(ngModel)]="phong.GiaTheoNgay"
+                mode="currency" currency="VND"
+                    disabled></p-inputNumber>
+            </div>
+        </div>
+    </div>    
+</p-fieldset>
+
+<!-- Thể hiện toàn bộ thông tin thuê, có thể thay đổi -->
+<p-fieldset legend="Thông tin thuê" [toggleable]="true">
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-6">
+            <label for="maNv">Mã lễ tân</label>
+            <input id="maNv" [(ngModel)]="nhanVien.Ma" type="text" pInputText 
+            disabled> 
+        </div>
+        
+        <div class="p-field p-col-6">
+            <label for="tenNv">Tên lễ tân</label>
+            <input id="tenNv" [(ngModel)]="nhanVien.Ten" type="text" pInputText 
+            disabled> 
+        </div>
+        
+        <div class="p-field p-col-6">
+            <label for="tgThue">Thời gian thuê</label>
+            <p-calendar [ngModel]="thoiGianThue" [showTime]="true" inputId="tgThue" disabled ></p-calendar>
+            <!-- <input id="tgThue" [(ngModel)]="thoiGianThue" type="text" pInputText  -->
+        </div>
+
+        <div class="p-field p-col-6">
+            <label for="tgTra">Thời gian trả</label>
+            <p-calendar [(ngModel)]="thoiGianTra" [showTime]="true" 
+            [minDate] = "thoiGianThue"
+            (onClose)="setNgayTra($event)" id="tgTra"></p-calendar>
+            <!-- <input id="tgTra" [(ngModel)]="thoiGianTra" type="text" pInputText >  -->
+        </div>
+
+        <div class="p-field p-col-6">
+            <label for="gioThue">Số giờ thuê</label>
+            <p-inputNumber id="gioThue" [(ngModel)]="gioThue" disabled></p-inputNumber>
+        </div>
+        
+        <div class="p-field p-col-6">
+            <label for="ngayThue">Số ngày thuê</label>
+            <p-inputNumber id="ngayThue" [(ngModel)]="ngayThue" disabled></p-inputNumber>
+        </div>
+    </div>
+</p-fieldset>
+
+<div class="p-d-flex p-jc-end">
+    <p-button label="Đồng ý cho thuê"  class="p-m-2"  
+        (onClick)="xacNhanThue($event)"></p-button>
+</div>

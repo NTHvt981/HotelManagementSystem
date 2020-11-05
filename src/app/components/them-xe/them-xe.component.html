@@ -26,12 +26,14 @@
 
         <div class="p-field">
             <label for="giaGio">Giá theo giờ</label>
-            <p-inputNumber id="giaGio" [(ngModel)]="xe.GiaTheoGio"></p-inputNumber>
+            <p-inputNumber id="giaGio" [(ngModel)]="xe.GiaTheoGio"
+            mode="currency" currency="VND"></p-inputNumber>
         </div>
 
         <div class="p-field">
             <label for="giaNgay">Giá theo ngày</label>
-            <p-inputNumber id="giaNgay" [(ngModel)]="xe.GiaTheoNgay"></p-inputNumber>
+            <p-inputNumber id="giaNgay" [(ngModel)]="xe.GiaTheoNgay"
+            mode="currency" currency="VND"></p-inputNumber>
         </div>
 
         <div class="p-d-flex p-jc-end p-ai-center">

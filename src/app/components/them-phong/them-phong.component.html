@@ -41,13 +41,15 @@
         </div>
 
         <div class="p-field">
-            <label for="giaGio">Giá theo giờ</label>
-            <p-inputNumber id="giaGio" [(ngModel)]="phong.GiaTheoGio"></p-inputNumber>
+            <label for="giaGio">Giá theo giờ (VNĐ)</label>
+            <p-inputNumber id="giaGio" [(ngModel)]="phong.GiaTheoGio" 
+            mode="currency" currency="VND"></p-inputNumber>
         </div>
 
         <div class="p-field">
-            <label for="giaNgay">Giá theo ngày</label>
-            <p-inputNumber id="giaNgay" [(ngModel)]="phong.GiaTheoNgay"></p-inputNumber>
+            <label for="giaNgay">Giá theo ngày (VNĐ)</label>
+            <p-inputNumber id="giaNgay" [(ngModel)]="phong.GiaTheoNgay" 
+            mode="currency" currency="VND"></p-inputNumber>
         </div>
 
         <div class="p-d-flex p-jc-end p-ai-center">

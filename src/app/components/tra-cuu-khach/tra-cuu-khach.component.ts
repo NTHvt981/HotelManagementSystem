@@ -76,7 +76,14 @@ export class TraCuuKhachComponent implements OnInit {
   }
   
   lapPhieuThue($event) {
-    
+    if (this.selectedKh != null && this.selectedKh != undefined)
+      this.router.navigateByUrl('tra-cuu-phong', {
+        state: {
+          data: {
+            khachHang: this.selectedKh,
+          }
+        }
+    })
   }
   
   xemChiTiet($event) {   

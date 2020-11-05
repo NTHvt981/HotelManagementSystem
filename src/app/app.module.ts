@@ -24,6 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
 import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
+import {FieldsetModule} from 'primeng/fieldset';
 
 import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-nhan-vien.component';
 import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.component';
@@ -41,6 +42,9 @@ import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon
 import { TraCuuXeComponent } from './components/tra-cuu-xe/tra-cuu-xe.component';
 import { ThemXeComponent } from './components/them-xe/them-xe.component';
 import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.component';
+import { LapPhieuThuePhongComponent } from './components/lap-phieu-thue-phong/lap-phieu-thue-phong.component';
+import { TraCuuPhieuThuePhongComponent } from './components/tra-cuu-phieu-thue-phong/tra-cuu-phieu-thue-phong.component';
+import { ChiTietPhieuThuePhongComponent } from './components/chi-tiet-phieu-thue-phong/chi-tiet-phieu-thue-phong.component';
 
 
 @NgModule({
@@ -61,7 +65,10 @@ import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.compone
     ChiTietMonAnComponent,
     TraCuuXeComponent,
     ThemXeComponent,
-    ChiTietXeComponent
+    ChiTietXeComponent,
+    LapPhieuThuePhongComponent,
+    TraCuuPhieuThuePhongComponent,
+    ChiTietPhieuThuePhongComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +93,7 @@ import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.compone
     TableModule,
     CardModule,
     FileUploadModule,
+    FieldsetModule,
 
     FormsModule
     

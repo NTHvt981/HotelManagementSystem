@@ -1,3 +1,4 @@
+import { KhachHang } from './../../models/khach-hang';
 import { Phong } from './../../models/phong';
 import { Component, OnInit } from '@angular/core';
 import { LoaiPhongOptions, TinhTrangOptions } from 'src/app/models/phong';
@@ -26,9 +27,14 @@ export class TraCuuPhongComponent implements OnInit {
   phongs: Phong[] = [];
   selectedPhong: Phong;
 
+  khachHangThue: KhachHang = undefined;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    /**
+     * for debug
+     */
     for (let i = 0; i < 100; i++) {
       if (i % 2 == 1) {
         this.phongs.push(new Phong({
@@ -56,6 +62,14 @@ export class TraCuuPhongComponent implements OnInit {
         );
       }
     }
+
+
+    //check if data sent have khach hang
+    if (history.state.data != undefined) {
+      this.khachHangThue = history.state.data.khachHang;
+      console.log(this.khachHangThue);
+    }
+
   }
 
   timKiem($event) {
@@ -78,7 +92,23 @@ export class TraCuuPhongComponent implements OnInit {
   }
 
   lapPhieuThue($event) {
+    console.log(this.khachHangThue)
+    console.log(this.selectedPhong)
 
+    if (this.khachHangThue != undefined) {
+      if (this.selectedPhong != null && this.selectedPhong != undefined)
+        this.router.navigateByUrl('lap-phieu-thue-phong', {
+          state: {
+            data: {
+              khachHang: this.khachHangThue,
+              phong: this.selectedPhong
+            }
+          }
+        })
+    }
+    else {
+      this.router.navigateByUrl('tra-cuu-khach')
+    }
   }
 
   xemChiTiet($event) {

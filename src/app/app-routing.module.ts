@@ -1,3 +1,7 @@
+import { MonAn } from './models/mon-an';
+import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon-an.component';
+import { ThemMonAnComponent } from './components/them-mon-an/them-mon-an.component';
+import { TraCuuMonAnComponent } from './components/tra-cuu-mon-an/tra-cuu-mon-an.component';
 import { Phong } from './models/phong';
 import { ChiTietPhongComponent } from './components/chi-tiet-phong/chi-tiet-phong.component';
 import { ThemPhongComponent } from './components/them-phong/them-phong.component';
@@ -61,6 +65,24 @@ const routes: Routes = [
     component: ChiTietPhongComponent,
     data: {phong: Phong}
   },
+
+  {
+    pathMatch: 'full',
+    path: 'tra-cuu-mon-an',
+    component: TraCuuMonAnComponent
+  },
+  {
+    pathMatch: 'full',
+    path: 'them-mon-an',
+    component: ThemMonAnComponent
+  },
+  {
+    path: 'chi-tiet-mon-an',
+    component: ChiTietMonAnComponent,
+    data: {monAn: MonAn}
+  },
+
+
 ];
 
 @NgModule({

@@ -86,7 +86,7 @@ export class TraCuuPhongComponent implements OnInit {
       {
         state: {
           data: this.selectedPhong
-        }
-      });
+      }
+    });
   }
 }

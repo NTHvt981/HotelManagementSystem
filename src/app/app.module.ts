@@ -35,6 +35,9 @@ import { ThemKhachComponent } from './components/them-khach/them-khach.component
 import { ChiTietKhachComponent } from './components/chi-tiet-khach/chi-tiet-khach.component';
 import { ThemPhongComponent } from './components/them-phong/them-phong.component';
 import { ChiTietPhongComponent } from './components/chi-tiet-phong/chi-tiet-phong.component';
+import { ThemMonAnComponent } from './components/them-mon-an/them-mon-an.component';
+import { TraCuuMonAnComponent } from './components/tra-cuu-mon-an/tra-cuu-mon-an.component';
+import { ChiTietMonAnComponent } from './components/chi-tiet-mon-an/chi-tiet-mon-an.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { ChiTietPhongComponent } from './components/chi-tiet-phong/chi-tiet-phon
     ThemKhachComponent,
     ChiTietKhachComponent,
     ThemPhongComponent,
-    ChiTietPhongComponent
+    ChiTietPhongComponent,
+    ThemMonAnComponent,
+    TraCuuMonAnComponent,
+    ChiTietMonAnComponent
   ],
   imports: [
     BrowserModule,

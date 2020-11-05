@@ -1,0 +1,28 @@
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-6">
+        <label for="ma">Mã món ăn</label>
+        <input id="ma" [(ngModel)]="monAn.Ma" type="text" pInputText disabled> 
+    </div>
+
+    <div class="p-field p-col-6">
+        <label for="gia">Giá món ăn</label>
+        <p-inputNumber id="gia" [(ngModel)]="monAn.Gia"
+            [(disabled)] = "!editable"></p-inputNumber>
+    </div>
+
+    <div class="p-col-12 p-field">
+        <label for="ten">Tên món ăn</label>
+        <input id="ten" [(ngModel)]="monAn.Ten" type="text" pInputText 
+        [(disabled)] = "!editable"> 
+    </div>
+</div>
+
+<div class="p-d-flex p-jc-end p-ai-center">
+    <p-toggleButton [(ngModel)]="editable" onLabel='Chỉnh-Sửa' offLabel="Chỉ Xem" 
+        [style]="{'width': '10em'}"
+    ></p-toggleButton>
+    <p-button label="Lưu"  class="p-m-2"  
+        (onClick)="chinhSua($event)" [(disabled)]="!editable"></p-button>
+    <p-button label="Xóa"  class="p-m-2"  
+        (onClick)="xoa($event)"></p-button>
+</div>

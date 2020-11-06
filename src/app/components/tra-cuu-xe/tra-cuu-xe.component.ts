@@ -1,3 +1,4 @@
+import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { Xe } from './../../models/xe';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,8 @@ import { TinhTrangOptions } from 'src/app/models/xe';
 })
 export class TraCuuXeComponent implements OnInit {
   editable: boolean = false;
+  dsXe: Xe[] = [];
+  selectedXe: Xe;
 
   ma: string;
   ten: string;
@@ -18,9 +21,8 @@ export class TraCuuXeComponent implements OnInit {
   tinhTrang: string;
 
   tinhTrangOptions = TinhTrangOptions;
-
-  dsXe: Xe[] = [];
-  selectedXe: Xe;
+  
+  phieuThuePhong: PhieuThuePhong;
 
   constructor(private router: Router) { }
 
@@ -62,7 +64,10 @@ export class TraCuuXeComponent implements OnInit {
   }
 
   lapPhieu($event) {
-
+    if (this.phieuThuePhong != null)
+      console.log("lập phiếu", this.phieuThuePhong)
+    else
+      this.router.navigateByUrl('/tra-cuu-phieu-thue-phong');
   }
 
   xemChiTiet($event) {

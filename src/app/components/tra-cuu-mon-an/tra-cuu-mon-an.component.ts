@@ -1,3 +1,4 @@
+import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { MonAn } from './../../models/mon-an';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,8 @@ export class TraCuuMonAnComponent implements OnInit {
   ma: string;
   ten: string;
   gia: number;
+
+  phieuThuePhong: PhieuThuePhong
 
   constructor(private router: Router) { }
 
@@ -34,6 +37,11 @@ export class TraCuuMonAnComponent implements OnInit {
         }));
       }
     }
+
+    if (history.state.data != undefined)
+      this.phieuThuePhong = history.state.data
+    else
+      this.phieuThuePhong = null
   }
 
   timKiem($event) {
@@ -51,7 +59,10 @@ export class TraCuuMonAnComponent implements OnInit {
   }
 
   lapPhieu($event) {
-
+    if (this.phieuThuePhong != null)
+      console.log("lập phiếu", this.phieuThuePhong)
+    else
+      this.router.navigateByUrl('/tra-cuu-phieu-thue-phong');
   }
 
   xemChiTiet($event) {

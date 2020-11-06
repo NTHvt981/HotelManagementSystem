@@ -96,15 +96,14 @@ export class TraCuuPhongComponent implements OnInit {
     console.log(this.selectedPhong)
 
     if (this.khachHangThue != undefined) {
-      if (this.selectedPhong != null && this.selectedPhong != undefined)
-        this.router.navigateByUrl('lap-phieu-thue-phong', {
-          state: {
-            data: {
-              khachHang: this.khachHangThue,
-              phong: this.selectedPhong
-            }
+      this.router.navigateByUrl('lap-phieu-thue-phong', {
+        state: {
+          data: {
+            khachHang: this.khachHangThue,
+            phong: this.selectedPhong
           }
-        })
+        }
+      })
     }
     else {
       this.router.navigateByUrl('tra-cuu-khach')

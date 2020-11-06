@@ -81,10 +81,20 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
   }
 
   lapPhieuThucAn($event) {
-
+    this.router.navigateByUrl('/tra-cuu-mon-an', 
+      {
+        state: {
+          data: this.selectedPhieuThue
+      }
+    });
   }
 
   lapPhieuThueXe($event) {
-    
+    this.router.navigateByUrl('/tra-cuu-xe', 
+      {
+        state: {
+          data: this.selectedPhieuThue
+      }
+    });
   }
 }

@@ -45,6 +45,9 @@ import { ChiTietXeComponent } from './components/chi-tiet-xe/chi-tiet-xe.compone
 import { LapPhieuThuePhongComponent } from './components/lap-phieu-thue-phong/lap-phieu-thue-phong.component';
 import { TraCuuPhieuThuePhongComponent } from './components/tra-cuu-phieu-thue-phong/tra-cuu-phieu-thue-phong.component';
 import { ChiTietPhieuThuePhongComponent } from './components/chi-tiet-phieu-thue-phong/chi-tiet-phieu-thue-phong.component';
+import { LapPhieuThucAnComponent } from './components/lap-phieu-thuc-an/lap-phieu-thuc-an.component';
+import { LapPhieuThueXeComponent } from './components/lap-phieu-thue-xe/lap-phieu-thue-xe.component';
+import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.component';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import { ChiTietPhieuThuePhongComponent } from './components/chi-tiet-phieu-thue
     ChiTietXeComponent,
     LapPhieuThuePhongComponent,
     TraCuuPhieuThuePhongComponent,
-    ChiTietPhieuThuePhongComponent
+    ChiTietPhieuThuePhongComponent,
+    LapPhieuThucAnComponent,
+    LapPhieuThueXeComponent,
+    LapHoaDonComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@
     <div class="p-field p-col-6">
         <label for="gia">Giá món ăn</label>
         <p-inputNumber id="gia" [(ngModel)]="monAn.Gia"
+        mode="currency" currency="VND"
             [(disabled)] = "!editable"></p-inputNumber>
     </div>
 

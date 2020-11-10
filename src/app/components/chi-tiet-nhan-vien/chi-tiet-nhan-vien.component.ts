@@ -10,9 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ChiTietNhanVienComponent implements OnInit {
   nhanVien: NhanVien;
   editable: boolean = false;
-  textChinhSuaButton = "Chỉnh sửa";
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     if (history.state.data == undefined)

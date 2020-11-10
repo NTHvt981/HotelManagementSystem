@@ -10,8 +10,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lap-phieu-thue-phong.component.css']
 })
 export class LapPhieuThuePhongComponent implements OnInit {
-
-  editable: boolean = false;
   khachHang: KhachHang = new KhachHang();
   phong: Phong = new Phong();
   nhanVien: NhanVien = new NhanVien();

@@ -1,3 +1,5 @@
+import { ThongTinCaNhanComponent } from './components/thong-tin-ca-nhan/thong-tin-ca-nhan.component';
+import { LapPhieuThueXeComponent } from './components/lap-phieu-thue-xe/lap-phieu-thue-xe.component';
 import { TraCuuPhieuThuePhongComponent } from './components/tra-cuu-phieu-thue-phong/tra-cuu-phieu-thue-phong.component';
 import { LapPhieuThuePhongComponent } from './components/lap-phieu-thue-phong/lap-phieu-thue-phong.component';
 import { Xe } from './models/xe';
@@ -22,12 +24,25 @@ import { TraCuuNhanVienComponent } from './components/tra-cuu-nhan-vien/tra-cuu-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TraCuuKhachComponent } from './components/tra-cuu-khach/tra-cuu-khach.component';
+import { LapPhieuThucAnComponent } from './components/lap-phieu-thuc-an/lap-phieu-thuc-an.component';
+import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.component';
+import { TinhLuongNhanVienComponent } from './components/tinh-luong-nhan-vien/tinh-luong-nhan-vien.component';
 
 const routes: Routes = [
   {
     pathMatch: 'full',
+    path: 'thong-tin-ca-nhan',
+    component: ThongTinCaNhanComponent
+  },
+
+  {
+    pathMatch: 'full',
     path: 'tra-cuu-nhan-vien',
     component: TraCuuNhanVienComponent
+  },
+  {
+    path: 'tinh-luong-nhan-vien',
+    component: TinhLuongNhanVienComponent
   },
   {
     pathMatch: 'full',
@@ -115,6 +130,19 @@ const routes: Routes = [
   {
     path: 'tra-cuu-phieu-thue-phong',
     component: TraCuuPhieuThuePhongComponent,
+  },
+  
+  {
+    path: 'lap-phieu-thuc-an',
+    component: LapPhieuThucAnComponent
+  },
+  {
+    path: 'lap-phieu-thue-xe',
+    component: LapPhieuThueXeComponent
+  },
+  {
+    path: 'lap-hoa-don',
+    component: LapHoaDonComponent
   }
 ];
 

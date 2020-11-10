@@ -9,7 +9,7 @@
     <div class="p-field p-col-8">
         <label for="tenNhanVien">Họ tên</label>
         <input id="tenNhanVien" [(ngModel)]="nhanVien.Ten" type="text" pInputText 
-        [(disabled)]="!editable"> 
+        disabled> 
     </div>
 
     <div class="p-col-4">
@@ -18,12 +18,12 @@
         <div class="p-field-radiobutton">
         <p-radioButton name="gioiTinh" value="Nam" [(ngModel)]="nhanVien.GioiTinh" 
             inputId="gtNam" label="Nam"
-            [(disabled)]="!editable"></p-radioButton>
+            disabled></p-radioButton>
         </div>
         <div class="p-field-radiobutton">
         <p-radioButton name="gioiTinh" value="Nữ" [(ngModel)]="nhanVien.GioiTinh" 
             inputId="gtNu" label="Nữ"
-            [(disabled)]="!editable"></p-radioButton>
+            disabled></p-radioButton>
         </div>
     </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="p-field p-col-8">
         <label for="sdtNhanVien">Số điện thoại</label>
         <input id="sdtNhanVien" [(ngModel)]="nhanVien.SoDienThoai" type="text" pInputText 
-        [(disabled)]="!editable"> 
+        disabled> 
         <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
     </div>
     
@@ -43,7 +43,7 @@
         <ng-template pTemplate="footer">
             <p-fileUpload  name="demo[]" mode="basic"
                 customUpload="true" accept="image/*" maxFileSize="1000000" 
-                (uploadHandler)="onImageUpload($event)" [(disabled)]="!editable">
+                (uploadHandler)="onImageUpload($event)" disabled>
             </p-fileUpload>
             <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
         </ng-template>
@@ -54,21 +54,21 @@
         <div class="p-field">
             <label for="cmnd">CMND</label>
             <input id="cmnd" [(ngModel)]="nhanVien.Cmnd" type="text" pInputText 
-            [(disabled)]="!editable"> 
+            disabled> 
             <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
         </div>
 
         <div class="p-field">
             <label for="ngaySinh">Ngày sinh</label>
             <p-calendar id="ngaySinh" [(ngModel)]="nhanVien.NgaySinh" 
-                [showIcon]="true" [(disabled)]="!editable"></p-calendar>
+                [showIcon]="true" disabled></p-calendar>
         </div>
 
         <div class="p-field">
             <label for="dcNhanVien">Địa chỉ</label>
             <textarea pInputTextarea id="dcNhanVien" [(ngModel)]="nhanVien.DiaChi" 
             [rows]="6" [cols]="30" autoResize="autoResize"
-            [(disabled)]="!editable"> </textarea>
+            disabled> </textarea>
         </div>
     
         <div class="p-field">
@@ -78,28 +78,28 @@
                 value="Nhân viên lễ tân"  label="Nhân viên lễ tân"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="lt"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên quản lý" label="Nhân viên quản lý"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="ql"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên thức ăn" label="Nhân viên phục vụ thức ăn"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên thuê xe" label="Nhân viên thuê xe"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
         </div>
         
@@ -107,19 +107,36 @@
             <label for="mucLuong">Mức lương</label>
             <p-inputNumber id="mucLuong" [(ngModel)]="nhanVien.Luong" 
             mode="currency" currency="VND"
-            [(disabled)]="!editable"> </p-inputNumber>
-            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+            disabled> </p-inputNumber>
         </div>
+        
+        <div class="p-field">
+            <label for="snlv">Số ngày làm việc</label>
+            <p-inputNumber id="snlv" [(ngModel)]="ngayLamViec" 
+            (onInput) = "nhapNgay($event)"
+            (keyup)="nhapNgay($event)"> </p-inputNumber>
+        </div>
+        <div class="p-field">
+            <label for="thuong">Số tiền thưởng</label>
+            <p-inputNumber id="thuong" [(ngModel)]="tienThuong" 
+            mode="currency" currency="VND"
+            (onInput) = "nhapThuong($event)"
+            (keyup)="nhapThuong($event)"> </p-inputNumber>
+        </div>
+        
+        <div class="p-field">
+            <label for="tongTien">Tổng tiền trả</label>
+            <p-inputNumber id="tongTien" [(ngModel)]="tongTien" 
+            mode="currency" currency="VND" disabled> </p-inputNumber>
+        </div>
+
+        <div *ngIf="daTraLuong">Thông báo: ĐÃ trả lương tháng này.</div>
+        <div *ngIf="!daTraLuong">Thông báo: CHƯA trả lương tháng này.</div>
 
         <!-- sửa nhân viên -->
         <div class="p-d-flex p-jc-end p-ai-center">
-            <p-toggleButton [(ngModel)]="editable" onLabel='Chỉnh_Sửa' offLabel="Chỉ Xem" 
-                [style]="{'width': '10em'}"
-            ></p-toggleButton>
-            <p-button label="Lưu"  class="p-m-2"  
-                (onClick)="chinhSua($event)" [(disabled)]="!editable"></p-button>
-            <p-button label="Xóa"  class="p-m-2"  
-                (onClick)="xoa($event)"></p-button>
+            <p-button label="Đồng ý trả lương"  class="p-m-2"  
+                (onClick)="traLuong($event)" [(disabled)]="daTraLuong"></p-button>
         </div>
     </div>
     

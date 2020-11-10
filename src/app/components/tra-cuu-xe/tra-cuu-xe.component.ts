@@ -45,6 +45,11 @@ export class TraCuuXeComponent implements OnInit {
           })
         );
       }
+
+      if (history.state.data != undefined)
+        this.phieuThuePhong = history.state.data
+      else
+        this.phieuThuePhong = null
     }
   }
   timKiem($event) {
@@ -65,7 +70,14 @@ export class TraCuuXeComponent implements OnInit {
 
   lapPhieu($event) {
     if (this.phieuThuePhong != null)
-      console.log("lập phiếu", this.phieuThuePhong)
+    this.router.navigateByUrl('/lap-phieu-thue-xe', {
+      state: {
+        data: {
+          xe: this.selectedXe,
+          phieuThuePhong: this.phieuThuePhong
+        }
+      }
+    });
     else
       this.router.navigateByUrl('/tra-cuu-phieu-thue-phong');
   }

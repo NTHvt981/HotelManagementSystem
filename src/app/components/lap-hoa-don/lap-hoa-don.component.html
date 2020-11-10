@@ -1,1 +1,95 @@
-<p>lap-hoa-don works!</p>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-6">
+        <label for="maHD">Mã hóa đơn</label>
+        <input id="maHD" [(ngModel)]="hoaDon.Ma" type="text" pInputText 
+        disabled> 
+    </div>
+    <div class="p-field p-col-6">
+        <label for="maTP">Mã thuê phòng</label>
+        <input id="maTP" [(ngModel)]="phieuThuePhong.Ma" type="text" pInputText 
+        disabled> 
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="tenKH">Tên khách hàng</label>
+        <input id="tenKH" [(ngModel)]="khachHang.Ten" type="text" pInputText 
+        disabled> 
+    </div>
+    <div class="p-field p-col-6">
+        <label for="tenLT">Tên lễ tân</label>
+        <input id="tenLT" [(ngModel)]="nhanVien.Ten" type="text" pInputText 
+        disabled> 
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="soP">Số phòng</label>
+        <input id="soP" [(ngModel)]="phong.SoPhong" type="text" pInputText 
+        disabled> 
+    </div>
+    <div class="p-field p-col-6">
+        <label for="tgThue">Thời gian thuê</label>
+        <p-calendar [ngModel]="phieuThuePhong.ThoiGianThue"
+         [showTime]="true" inputId="tgThue" disabled ></p-calendar>
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="soG">Số giờ thuê</label>
+        <p-inputNumber id="soG" [(ngModel)]="phieuThuePhong.GioThue"></p-inputNumber>
+    </div>
+    <div class="p-field p-col-6">
+        <label for="soN">Số ngày thuê</label>
+        <p-inputNumber id="soN" [(ngModel)]="phieuThuePhong.NgayThue"></p-inputNumber>
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="tgLap">Thời gian lập</label>
+        <p-calendar [ngModel]="hoaDon.ThoiGianLap"
+         [showTime]="true" inputId="tgLap" disabled ></p-calendar>
+    </div>
+    <div class="p-field p-col-6">
+        <label for="phiP">Chi phí phòng</label>
+        <p-inputNumber id="phiP" [(ngModel)]="phiPhong"
+        mode="currency" currency="VND" disabled></p-inputNumber>
+    </div>
+</div>
+
+Danh sách dịch vụ đã sử dụng
+<p-table [value]="dsPhieuDichVu" dataKey="Ma">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>STT</th>
+            <th>Mã nhân viên phục vụ</th>
+            <th>Thời gian lập</th>
+            <th>Loại dịch vụ</th>
+            <th>Thành tiền</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-phieu let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex + 1}}</td>
+            <td>{{phieu.MaNhanVien}}</td>
+            <td>{{phieu.ThoiGianLap | date :'short'}}</td>
+            <td>{{phieu.LoaiDichVu}}</td>
+            <td>{{phieu.ThanhTien}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<br>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-6">
+        <label for="phiDV">Chi phí dịch vụ</label>
+        <p-inputNumber id="phiDV" [(ngModel)]="phiDV"
+        mode="currency" currency="VND" disabled></p-inputNumber>
+    </div>    
+    <div class="p-field p-col-6">
+        <label for="tongP">Tổng chi phí</label>
+        <p-inputNumber id="tongP" [(ngModel)]="hoaDon.TongChiPhi"
+        mode="currency" currency="VND" disabled></p-inputNumber>
+    </div>
+</div>
+
+<div class="p-d-flex p-jc-end">
+    <p-button label="Đồng ý"  class="p-m-2"  
+        (onClick)="xacNhanLap($event)"></p-button>
+</div>

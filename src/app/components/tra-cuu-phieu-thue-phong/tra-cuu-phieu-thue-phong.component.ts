@@ -77,7 +77,12 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
   }
 
   lapHoaDon($event) {
-    
+    this.router.navigateByUrl('/lap-hoa-don', 
+      {
+        state: {
+          data: this.selectedPhieuThue
+      }
+    });
   }
 
   lapPhieuThucAn($event) {

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ql-mua-ban-o-to-trong-ct": {
+      "hosting": {
+        "hotel-management-system": [
+          "ql-mua-ban-o-to-trong-ct"
+        ]
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ export class TraCuuNhanVienComponent implements OnInit {
           Ten: 'Nguyễn Hoàng A',
           GioiTinh: 'Nam',
           ChucVu: 'Nhân viên thức ăn',
-          Luong: 12_000_000,
+          Luong: 12_000_0,
           SoDienThoai: '123-4560-789'
         }));
       } else {
@@ -37,7 +37,7 @@ export class TraCuuNhanVienComponent implements OnInit {
           Ten: 'Trần Thị B',
           GioiTinh: 'Nữ',
           ChucVu: 'Nhân viên quản lý',
-          Luong: 18_000_000,
+          Luong: 18_000_0,
           SoDienThoai: '123-4560-789'
         }));
       }
@@ -61,8 +61,6 @@ export class TraCuuNhanVienComponent implements OnInit {
   }
 
   xemChiTiet($event) {
-    console.log('xem chi tiet')
-    
     this.router.navigateByUrl('/chi-tiet-nhan-vien', 
       {
         state: {
@@ -97,6 +95,11 @@ export class TraCuuNhanVienComponent implements OnInit {
   }
 
   tinhLuong($event) {
-
+    this.router.navigateByUrl('/tinh-luong-nhan-vien', 
+      {
+        state: {
+          data: this.selectedNhanVien
+        }
+      });
   }
 }

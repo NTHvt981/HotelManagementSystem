@@ -1,3 +1,7 @@
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FirestoreCrudService } from './services/firestore-crud.service';
+import { environment } from './../environments/environment';
+import { KhachHangService } from './services/khach-hang.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -48,6 +52,10 @@ import { ChiTietPhieuThuePhongComponent } from './components/chi-tiet-phieu-thue
 import { LapPhieuThucAnComponent } from './components/lap-phieu-thuc-an/lap-phieu-thuc-an.component';
 import { LapPhieuThueXeComponent } from './components/lap-phieu-thue-xe/lap-phieu-thue-xe.component';
 import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.component';
+import { ThongTinCaNhanComponent } from './components/thong-tin-ca-nhan/thong-tin-ca-nhan.component';
+import { TinhLuongNhanVienComponent } from './components/tinh-luong-nhan-vien/tinh-luong-nhan-vien.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -74,7 +82,9 @@ import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.compone
     ChiTietPhieuThuePhongComponent,
     LapPhieuThucAnComponent,
     LapPhieuThueXeComponent,
-    LapHoaDonComponent
+    LapHoaDonComponent,
+    ThongTinCaNhanComponent,
+    TinhLuongNhanVienComponent
   ],
   imports: [
     BrowserModule,
@@ -101,10 +111,14 @@ import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.compone
     FileUploadModule,
     FieldsetModule,
 
-    FormsModule
-    
+    FormsModule,
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

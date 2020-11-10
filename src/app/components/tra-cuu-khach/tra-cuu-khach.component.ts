@@ -1,3 +1,4 @@
+import { KhachHangService } from './../../services/khach-hang.service';
 import { KhachHang } from './../../models/khach-hang';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -24,7 +25,8 @@ export class TraCuuKhachComponent implements OnInit {
   khachHangs: KhachHang[] = [];
   selectedKh: KhachHang;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+    private service: KhachHangService) { }
 
   ngOnInit(): void {
     for (let i = 0; i < 100; i++) {
@@ -56,6 +58,12 @@ export class TraCuuKhachComponent implements OnInit {
       {label: 'Không thuê', value:'Không thuê'},
       {label: 'Đang thuê', value:'Đang thuê'},
     ]
+
+    this.service.readAllOnce().then(khachs => {
+      console.log(khachs)
+    })
+
+    this.taiLai(null);
   }
 
   onSelect($event) {
@@ -69,10 +77,16 @@ export class TraCuuKhachComponent implements OnInit {
   }
 
   timKiem($event) { 
+    this.service.readAllOnceBy(this.ma, this.ten, this.gioiTinh, this.sdt)
+    .then(khachs => {
+      this.khachHangs = khachs
+    })
   }
 
   taiLai($event) {
-    
+    this.service.readAllOnce().then(khachs => {
+      this.khachHangs = khachs
+    })
   }
   
   lapPhieuThue($event) {
@@ -93,5 +107,10 @@ export class TraCuuKhachComponent implements OnInit {
           data: this.selectedKh
         }
       });
+  }
+
+  xoa($event) {
+    this.service.erase(this.selectedKh.Ma);
+    this.taiLai(null);
   }
 }

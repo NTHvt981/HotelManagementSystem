@@ -60,7 +60,14 @@ export class TraCuuMonAnComponent implements OnInit {
 
   lapPhieu($event) {
     if (this.phieuThuePhong != null)
-      console.log("lập phiếu", this.phieuThuePhong)
+      this.router.navigateByUrl('/lap-phieu-thuc-an', {
+        state: {
+          data: {
+            monAn: this.selectedMonAn,
+            phieuThuePhong: this.phieuThuePhong
+          }
+        }
+      });
     else
       this.router.navigateByUrl('/tra-cuu-phieu-thue-phong');
   }

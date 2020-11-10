@@ -9,7 +9,7 @@
     <div class="p-field p-col-8">
         <label for="tenNhanVien">Họ tên</label>
         <input id="tenNhanVien" [(ngModel)]="nhanVien.Ten" type="text" pInputText 
-        [(disabled)]="!editable"> 
+        disabled> 
     </div>
 
     <div class="p-col-4">
@@ -78,28 +78,28 @@
                 value="Nhân viên lễ tân"  label="Nhân viên lễ tân"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="lt"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên quản lý" label="Nhân viên quản lý"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="ql"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên thức ăn" label="Nhân viên phục vụ thức ăn"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
                 value="Nhân viên thuê xe" label="Nhân viên thuê xe"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"
-                [(disabled)]="!editable"></p-radioButton>
+                disabled></p-radioButton>
             </div>
         </div>
         
@@ -107,7 +107,7 @@
             <label for="mucLuong">Mức lương</label>
             <p-inputNumber id="mucLuong" [(ngModel)]="nhanVien.Luong" 
             mode="currency" currency="VND"
-            [(disabled)]="!editable"> </p-inputNumber>
+            disabled> </p-inputNumber>
             <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
         </div>
 
@@ -118,8 +118,6 @@
             ></p-toggleButton>
             <p-button label="Lưu"  class="p-m-2"  
                 (onClick)="chinhSua($event)" [(disabled)]="!editable"></p-button>
-            <p-button label="Xóa"  class="p-m-2"  
-                (onClick)="xoa($event)"></p-button>
         </div>
     </div>
     

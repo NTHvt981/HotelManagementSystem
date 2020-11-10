@@ -1,1 +1,35 @@
-<p>lap-phieu-thuc-an works!</p>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-6">
+        <label for="maMA">Mã món ăn</label>
+        <input id="maMA" [(ngModel)]="monAn.Ma" type="text" pInputText 
+        disabled> 
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="maTP">Mã thuê phòng</label>
+        <input id="maTP" [(ngModel)]="phieuThuePhong.Ma" type="text" pInputText 
+        disabled> 
+    </div>
+    
+    <div class="p-field p-col-12">
+        <label for="tenMA">Tên món ăn</label>
+        <input id="tenMA" [(ngModel)]="monAn.Ten" type="text" pInputText 
+        disabled> 
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="gioThue">Giá</label>
+        <p-inputNumber id="gioThue" [(ngModel)]="monAn.Gia"
+        mode="currency" currency="VND" disabled></p-inputNumber>
+    </div>
+    
+    <div class="p-field p-col-6">
+        <label for="slg">Số lượng</label>
+        <p-inputNumber id="slg" [(ngModel)]="soLuong"></p-inputNumber>
+    </div>
+</div>
+
+<div class="p-d-flex p-jc-end">
+    <p-button label="Đồng ý"  class="p-m-2"  
+        (onClick)="xacNhanLap($event)"></p-button>
+</div>

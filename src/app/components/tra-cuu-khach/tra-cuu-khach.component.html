@@ -95,6 +95,9 @@
     <p-button label="Lập phiếu thuê phòng" class="p-m-2" 
         (onClick)="lapPhieuThue($event)"
         [(disabled)]="!selectedKh"></p-button>
+        <p-button label="Xóa"  class="p-m-2"  
+            (onClick)="xoa($event)"
+            [(disabled)]="!selectedKh"></p-button>
     <p-button label="Xem chi tiết"  class="p-m-2"  
         (onClick)="xemChiTiet($event)"
         [(disabled)]="!selectedKh"></p-button>

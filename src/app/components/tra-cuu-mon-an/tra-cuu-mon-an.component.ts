@@ -1,3 +1,4 @@
+import { MonAnService } from './../../services/mon-an.service';
 import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { MonAn } from './../../models/mon-an';
@@ -19,24 +20,10 @@ export class TraCuuMonAnComponent implements OnInit {
 
   phieuThuePhong: PhieuThuePhong
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: MonAnService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.dsMonAn.push(new MonAn({
-          Ma: (1000 + i*i).toString(),
-          Ten: 'Bạch tuộc nướng',
-          Gia: 25_000
-        }));
-      } else {
-        this.dsMonAn.push(new MonAn({
-          Ma: (1000 + i*i).toString(),
-          Ten: 'Cơm gà xối mỡ',
-          Gia: 35_000
-        }));
-      }
-    }
+    this.taiLai(null);
 
     if (history.state.data != undefined)
       this.phieuThuePhong = history.state.data
@@ -45,11 +32,17 @@ export class TraCuuMonAnComponent implements OnInit {
   }
 
   timKiem($event) {
-
+    this.database.readAllOnceBy(
+      this.ma, this.ten, this.gia
+    ).then((dsMonAn) => {
+      this.dsMonAn = dsMonAn;
+    })
   }
 
   taiLai($event) {
-
+    this.database.readAllOnce().then((dsMonAn) => {
+      this.dsMonAn = dsMonAn;
+    })
   }
 
   onSelect($event) {

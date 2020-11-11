@@ -13,6 +13,7 @@ export class NhanVien {
     ChucVu: string = 'Nhân viên lễ tân';
     Luong: number = 0;
     HienThi: boolean = true;
+    uid: string = '';
 
     public constructor(init?:Partial<NhanVien>) {
         Object.assign(this, init);

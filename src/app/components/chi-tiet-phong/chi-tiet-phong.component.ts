@@ -1,3 +1,5 @@
+import { PhongService } from './../../services/phong.service';
+import { ImageService } from './../../services/image.service';
 import { LoaiPhongOptions, Phong, TinhTrangOptions } from './../../models/phong';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,7 +16,11 @@ export class ChiTietPhongComponent implements OnInit {
   tinhTrangOptions = TinhTrangOptions;
   loaiOptions = LoaiPhongOptions;
 
-  constructor(private router:Router) { }
+  constructor(
+    private router:Router, 
+    private database: PhongService, 
+    private imgStorage: ImageService
+    ) { }
 
   ngOnInit(): void {
     if (history.state.data == undefined)
@@ -25,11 +31,22 @@ export class ChiTietPhongComponent implements OnInit {
   }
 
   onImageUpload($event) {
+    this.imgStorage.uploadImage('phòng', $event.files[0])
+      .downloadUrl$.then((value) => {
+        console.log('upload complete!')
+        console.log(value)
 
+        /**
+         * set image view
+         */
+        this.imgStorage.getImageUrl(value).subscribe((next) => {
+          this.phong.HinhAnh = next;
+        })
+      })
   }
 
   chinhSua($event) {
-
+    this.database.update(this.phong).then((value) => console.log(value));
   }
   
   xoa($event) {

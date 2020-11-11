@@ -1,3 +1,4 @@
+import { XeService } from './../../services/xe.service';
 import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { Xe } from './../../models/xe';
@@ -24,40 +25,31 @@ export class TraCuuXeComponent implements OnInit {
   
   phieuThuePhong: PhieuThuePhong;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: XeService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.dsXe.push(new Xe({
-          Ma: (100 + i*i).toString(),
-          Ten: 'Xe Honda xanh duong',
-          GiaTheoGio: 10_000,
-          GiaTheoNgay: 100_000
-          })
-        );
-      } else {
-        this.dsXe.push(new Xe({
-          Ma: (100 + i*i).toString(),
-          Ten: 'Xe Wave đỏ đen',
-          GiaTheoGio: 20_000,
-          GiaTheoNgay: 200_000
-          })
-        );
-      }
+    this.taiLai(null);
 
-      if (history.state.data != undefined)
-        this.phieuThuePhong = history.state.data
-      else
-        this.phieuThuePhong = null
-    }
+    if (history.state.data != undefined)
+      this.phieuThuePhong = history.state.data
+    else
+      this.phieuThuePhong = null
   }
-  timKiem($event) {
 
+  timKiem($event) {
+    this.database.readAllOnceBy(
+      this.ma, this.ten, 
+      this.giaGio, this.giaNgay,
+      this.tinhTrang
+    ).then((dsXe) => {
+      this.dsXe = dsXe;
+    })
   }
 
   taiLai($event) {
-
+    this.database.readAllOnce().then((dsXe) => {
+      this.dsXe = dsXe;
+    })
   }
 
   onSelect($event) {
@@ -69,6 +61,8 @@ export class TraCuuXeComponent implements OnInit {
   }
 
   lapPhieu($event) {
+    if (this.selectedXe.TinhTrang != 'Không thuê') return;
+
     if (this.phieuThuePhong != null)
     this.router.navigateByUrl('/lap-phieu-thue-xe', {
       state: {

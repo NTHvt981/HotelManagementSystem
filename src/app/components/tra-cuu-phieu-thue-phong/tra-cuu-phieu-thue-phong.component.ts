@@ -65,6 +65,8 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
     this.tinhTrang = this.selectedPhieuThue.TinhTrang;
     this.gioThue = this.selectedPhieuThue.GioThue;
     this.ngayThue = this.selectedPhieuThue.NgayThue;
+
+    console.log(this.selectedPhieuThue);
   }
 
   lapHoaDon($event) {

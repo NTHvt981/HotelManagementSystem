@@ -1,3 +1,10 @@
+import { PhieuThuePhongService } from './../../services/phieu-thue-phong.service';
+import { HoaDonService } from './../../services/hoa-don.service';
+import { PhieuDichVuService } from './../../services/phieu-dich-vu.service';
+import { NhanVienService } from './../../services/nhan-vien.service';
+import { PhongService } from './../../services/phong.service';
+import { KhachHangService } from './../../services/khach-hang.service';
+import { Router } from '@angular/router';
 import { HoaDon } from './../../models/hoa-don';
 import { Phong } from './../../models/phong';
 import { KhachHang } from './../../models/khach-hang';
@@ -15,84 +22,98 @@ export class LapHoaDonComponent implements OnInit {
   clickable = false;
   phieuThuePhong: PhieuThuePhong = new PhieuThuePhong();
   dsPhieuDichVu: PhieuDichVu[] = [];
-  nhanVien: NhanVien;
-  khachHang: KhachHang;
-  phong: Phong;
+  nhanVien: NhanVien = new NhanVien();
+  khachHang: KhachHang = new KhachHang();
+  phong: Phong = new Phong();
 
   phiDV = 0;
   phiPhong = 0;
   hoaDon = new HoaDon();
 
-  constructor() { }
+  loadP = false;
+  loadK = false;
+  loadNV = false;
+  loadDV = false;
+
+  constructor(
+    private router: Router,
+    private khachS: KhachHangService,
+    private phongS: PhongService,
+    private nhanVienS: NhanVienService,
+    private phieuDVS: PhieuDichVuService,
+    private hoaDonS: HoaDonService,
+    private thuePhongS: PhieuThuePhongService
+    ) { }
 
   ngOnInit(): void {
-    // if (history.state.data == undefined)
-    //   this.router.navigateByUrl('/tra-cuu-phieu-thue-phong')
+    if (history.state.data == undefined)
+      this.router.navigateByUrl('/tra-cuu-phieu-thue-phong')
       
     //this line get the data from url
     this.phieuThuePhong = history.state.data;
 
-    console.log(this.phieuThuePhong);
+    console.log('PHIẾU THUÊ PHÒNG', this.phieuThuePhong);
 
-    this.hoaDon.Ma = "HD1000";
     this.traCuuLeTan(this.phieuThuePhong.MaLeTan);
     this.traCuuKhach(this.phieuThuePhong.MaKhach);
     this.traCuuPhong(this.phieuThuePhong.MaPhong);
     this.traCuuDSPDV(this.phieuThuePhong.Ma);
-
-    this.tinhCPDV();
-    this.tinhCPPhong();
-    this.tinhTongCP();
   }
   
   traCuuKhach(maKhach: string) {
-    this.khachHang = new KhachHang({
-      Ma: maKhach,
-      Ten: 'Nguyễn Thanh D',
-      GioiTinh: 'Nam',
-      SoDienThoai: '123-4560-789',
+    this.khachS.readOnce(maKhach)
+      .then(khachHang => {
+        this.khachHang = khachHang;
 
-      Cmnd: '07520340',
-      TinhTrang: 'Không thuê'
-    });
+        this.loadK = true;
+        
+        // console.log(khachHang)
+      })
   }
   
   traCuuPhong(maPhong: string) {
-    this.phong = new Phong({
-      Ma: maPhong,
-      SoPhong: "130",
-      SoGiuong: 3,
-      SoTang: 1,
+    this.phongS.readOnce(maPhong)
+      .then(phong => {
+        this.phong = phong;
+        
+        /**
+         * After get phong, calculate the cost
+         */
+        this.tinhCPPhong();
+        this.tinhTongCP();
 
-      LoaiPhong: "Thương gia",
-      GiaTheoGio: 60_000,
-      GiaTheoNgay: 600_000
-      });
+        this.loadP = true;
+        
+        // console.log(phong)
+      })
   }
 
   traCuuLeTan(maLeTan: string) {
     //query dữ liệu từ firebase, thông qua mã lễ tân
-    this.nhanVien = new NhanVien({
-      Ma: maLeTan,
-      Ten: 'Nguyễn Hoàng A',
-      GioiTinh: 'Nam',
-      ChucVu: 'Nhân viên thức ăn',
-      Luong: 12_000_000,
-      SoDienThoai: '123-4560-789'
-    });
+    this.nhanVienS.readOnce(maLeTan)
+      .then(leTan => {
+        this.nhanVien = leTan;
+        
+        /**
+         * After get ds dv, calculate the cost
+         */
+        this.tinhCPDV();
+        this.tinhTongCP();
+
+        this.loadNV = true;
+        
+        // console.log(leTan)
+      })
   }
 
   traCuuDSPDV(maThuePhong: string) {
     //query dữ liệu từ firebase, thông qua mã thuê phòng
-    for (let i = 0; i < 4; i++) {
-      this.dsPhieuDichVu.push(new PhieuDichVu({
-        Ma: (1000 + i).toString(),
-        MaThuePhong: maThuePhong,
-        MaNhanVien: this.nhanVien.Ma,
-        ThanhTien: 100_000
-      }))
-      
-    }
+    this.phieuDVS.readAllOnceBy(maThuePhong)
+      .then(dsPDV => {
+        this.dsPhieuDichVu = dsPDV;
+
+        this.loadDV = true;
+      });
   }
 
   tinhCPDV() {
@@ -102,10 +123,8 @@ export class LapHoaDonComponent implements OnInit {
   }
 
   tinhCPPhong() {
-    if (this.phieuThuePhong.GioThue != undefined)
-      this.phiPhong = this.phong.GiaTheoGio * this.phieuThuePhong.GioThue
-    else
-      this.phiPhong = this.phong.GiaTheoNgay * this.phieuThuePhong.NgayThue;
+    this.phiPhong = this.phong.GiaTheoGio * this.phieuThuePhong.GioThue +
+      this.phong.GiaTheoNgay * this.phieuThuePhong.NgayThue;
   }
 
   tinhTongCP() {
@@ -113,6 +132,26 @@ export class LapHoaDonComponent implements OnInit {
   }
   
   xacNhanLap($event) {
+    this.hoaDon.NgayThue = this.phieuThuePhong.NgayThue;
+    this.hoaDon.SoPhong = this.phong.SoPhong;
+    this.hoaDon.TenKhach = this.khachHang.Ten;
 
+    this.hoaDon.MaThuePhong = this.phieuThuePhong.Ma;
+    this.hoaDon.GioThue = this.phieuThuePhong.GioThue;
+    this.hoaDon.NgayThue = this.phieuThuePhong.NgayThue;
+    
+    this.hoaDonS.create(this.hoaDon)
+      .then((val) => console.log(val));
+
+    this.thuePhongS.setTrangThai(this.phieuThuePhong.Ma, 'Đã thanh toán')
+
+    this.khachHang.TinhTrang = 'Không thuê';
+    this.phong.TinhTrang = 'Không thuê';
+    this.khachS.update(this.khachHang);
+    this.phongS.update(this.phong);
+
+    this.dsPhieuDichVu.map((phieu: PhieuDichVu) => {
+      this.phieuDVS.setTrangThai(phieu.Ma, 'Đã thanh toán');
+    })
   }
 }

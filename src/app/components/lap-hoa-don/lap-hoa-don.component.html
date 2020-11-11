@@ -28,17 +28,21 @@
     </div>
     <div class="p-field p-col-6">
         <label for="tgThue">Thời gian thuê</label>
-        <p-calendar [ngModel]="phieuThuePhong.ThoiGianThue"
-         [showTime]="true" inputId="tgThue" disabled ></p-calendar>
+        <!-- <p-calendar [ngModel]="phieuThuePhong.ThoiGianThue"
+         [showTime]="true" inputId="tgThue" disabled ></p-calendar> -->
+        <input id="tgTra" [(ngModel)]="phieuThuePhong.ThoiGianThue" 
+        type="text" pInputText disabled> 
     </div>
     
     <div class="p-field p-col-6">
         <label for="soG">Số giờ thuê</label>
-        <p-inputNumber id="soG" [(ngModel)]="phieuThuePhong.GioThue"></p-inputNumber>
+        <p-inputNumber id="soG" [(ngModel)]="phieuThuePhong.GioThue"
+        disabled></p-inputNumber>
     </div>
     <div class="p-field p-col-6">
         <label for="soN">Số ngày thuê</label>
-        <p-inputNumber id="soN" [(ngModel)]="phieuThuePhong.NgayThue"></p-inputNumber>
+        <p-inputNumber id="soN" [(ngModel)]="phieuThuePhong.NgayThue"
+        disabled></p-inputNumber>
     </div>
     
     <div class="p-field p-col-6">

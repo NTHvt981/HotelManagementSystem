@@ -72,10 +72,9 @@ export class TraCuuPhongComponent implements OnInit {
   }
 
   lapPhieuThue($event) {
-    console.log(this.khachHangThue)
-    console.log(this.selectedPhong)
-
     if (this.khachHangThue != undefined) {
+      if (this.selectedPhong.TinhTrang != 'Không thuê') return;
+
       this.router.navigateByUrl('lap-phieu-thue-phong', {
         state: {
           data: {

@@ -1,7 +1,7 @@
 export class Xe {
     Ma: string;
     Ten: string = '';
-    HinhAnh: string = '';
+    HinhAnh: string = 'https://winaero.com/blog/wp-content/uploads/2018/08/Windows-10-user-icon-big.png';
     GiaTheoGio: number = 0;
     GiaTheoNgay: number = 0;
     TinhTrang: string = 'Không thuê';

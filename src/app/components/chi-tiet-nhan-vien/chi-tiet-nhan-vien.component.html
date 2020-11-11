@@ -41,7 +41,8 @@
         <ng-template pTemplate="footer">
             <p-fileUpload  name="demo[]" mode="basic"
                 customUpload="true" accept="image/*" maxFileSize="1000000" 
-                (uploadHandler)="onImageUpload($event)" [(disabled)]="!editable">
+                (uploadHandler)="onImageUpload($event)" [(disabled)]="!editable"  
+                [(disabled)]="!editable">
             </p-fileUpload>
             <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
         </ng-template>

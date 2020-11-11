@@ -9,13 +9,17 @@
     
     <div class="p-field p-col-6">
         <label for="tgThue">Thời gian thuê</label>
-        <p-calendar [ngModel]="tgThue" inputId="tgThue"
-        [(disabled)]="!editable"></p-calendar>
+        <!-- <p-calendar [ngModel]="tgThue" inputId="tgThue"
+        [(disabled)]="!editable"></p-calendar> -->
+        <input id="tgThue" [(ngModel)]="tgThue" type="text" pInputText
+        [(disabled)]="!editable"> 
     </div>
     <div class="p-field p-col-6">
         <label for="tgTra">Thời gian trả</label>
-        <p-calendar [(ngModel)]="tgTra" id="tgTra"
-        [(disabled)]="!editable"></p-calendar>
+        <!-- <p-calendar [(ngModel)]="tgTra" id="tgTra"
+        [(disabled)]="!editable"></p-calendar> -->
+        <input id="tgTra" [(ngModel)]="tgTra" type="text" pInputText
+        [(disabled)]="!editable"> 
     </div>
     
     <div class="p-field p-col-6">

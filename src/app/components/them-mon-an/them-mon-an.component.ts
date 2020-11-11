@@ -1,3 +1,5 @@
+import { ImageService } from './../../services/image.service';
+import { MonAnService } from './../../services/mon-an.service';
 import { MonAn } from './../../models/mon-an';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class ThemMonAnComponent implements OnInit {
   monAn: MonAn = new MonAn();
 
-  constructor() { }
+  constructor(private database: MonAnService, private imgStorage: ImageService) { }
 
   ngOnInit(): void {
   }
 
   them($event) {
-    
+    this.database.create(this.monAn).then((value) => console.log(value));
   }
 }

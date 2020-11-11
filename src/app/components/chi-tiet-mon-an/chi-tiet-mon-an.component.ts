@@ -1,3 +1,5 @@
+import { ImageService } from './../../services/image.service';
+import { MonAnService } from './../../services/mon-an.service';
 import { Router } from '@angular/router';
 import { MonAn } from './../../models/mon-an';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +13,11 @@ export class ChiTietMonAnComponent implements OnInit {
   editable = false;
   monAn: MonAn;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private database: MonAnService, 
+    private imgStorage: ImageService
+    ) { }
 
   ngOnInit(): void {
     if (history.state.data == undefined)
@@ -22,7 +28,7 @@ export class ChiTietMonAnComponent implements OnInit {
   }
 
   chinhSua($event) {
-    
+    this.database.update(this.monAn).then((val) => console.log(val))
   }
 
   xoa($event) {

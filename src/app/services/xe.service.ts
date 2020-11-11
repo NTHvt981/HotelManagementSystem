@@ -1,34 +1,25 @@
-import { map } from 'rxjs/operators';
-import { KhachHang } from './../models/khach-hang';
-import { firebaseSerialize } from "./common-functions";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Xe } from './../models/xe';
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { firebaseSerialize } from './common-functions';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class KhachHangService {
-  private collection: AngularFirestoreCollection<KhachHang>
+export class XeService {
+  private collection: AngularFirestoreCollection<Xe>
 
   constructor(private firestore: AngularFirestore) {
-    this.collection = this.firestore.collection('khách hàng')
+    this.collection = this.firestore.collection('xe')
   }
 
-  getNewId(): string {
-    let timeSec = (new Date()).valueOf().toString();
-    return 'KH' + 
-      timeSec.substring(0, 3) + '-' +
-      timeSec.substring(4, 8) + '-' +
-      timeSec.substr(9);
-  }
-
-  create(khach: KhachHang): Promise<KhachHang> {
-    return new Promise<KhachHang>((resolve, reject) => {
-      this.collection.doc(khach.Ma).set(firebaseSerialize(khach))
+  create(xe: Xe): Promise<Xe> {
+    return new Promise<Xe>((resolve, reject) => {
+      this.collection.doc(xe.Ma).set(firebaseSerialize(xe))
         .then(() =>
-          resolve(khach)
+          resolve(xe)
         )
         .catch((reason) => 
           reject(reason as string)
@@ -36,11 +27,11 @@ export class KhachHangService {
     })
   }
 
-  update(khach: KhachHang): Promise<KhachHang> {
-    return new Promise<KhachHang>((resolve, reject) => {
-      this.collection.doc(khach.Ma).update(firebaseSerialize(khach))
+  update(xe: Xe): Promise<Xe> {
+    return new Promise<Xe>((resolve, reject) => {
+      this.collection.doc(xe.Ma).update(firebaseSerialize(xe))
         .then(() =>
-          resolve(khach)
+          resolve(xe)
         )
         .catch((reason) => 
           reject(reason as string)
@@ -93,24 +84,24 @@ export class KhachHangService {
    * read list once
    * read list live change
    */
-  readOnce(id: string): Promise<KhachHang> {
-    return new Promise<KhachHang>((resolve, reject) => {
-      this.collection.doc<KhachHang>(id).get().subscribe((doc) => {
-        resolve(doc.data() as KhachHang)
+  readOnce(id: string): Promise<Xe> {
+    return new Promise<Xe>((resolve, reject) => {
+      this.collection.doc<Xe>(id).get().subscribe((doc) => {
+        resolve(doc.data() as Xe)
       },
       (error) => console.log(error))
     })
   }
 
-  readAllOnce(): Promise<KhachHang[]> {
-    return new Promise<KhachHang[]>((resolve, reject) => {
+  readAllOnce(): Promise<Xe[]> {
+    return new Promise<Xe[]>((resolve, reject) => {
       this.collection.get().subscribe((query) => {
-        let dsKhach: KhachHang[] = []
+        let dsKhach: Xe[] = []
 
         query.docs.map((doc) => {
-          let khach = doc.data() as KhachHang;
-          if (khach.HienThi)
-            dsKhach.push(khach)
+          let xe = doc.data() as Xe;
+          if (xe.HienThi)
+            dsKhach.push(xe)
         })
 
         resolve(dsKhach)
@@ -118,22 +109,27 @@ export class KhachHangService {
     })
   }
 
-  readAllOnceBy(ma: string, ten: string, gt: string, sdt: string): Promise<KhachHang[]> {
-    return new Promise<KhachHang[]>((resolve, reject) => {
+  readAllOnceBy(
+    ma: string, ten: string, 
+    giaH: number, giaN: number,
+    tinhTrang: string  
+  ): Promise<Xe[]> {
+    return new Promise<Xe[]>((resolve, reject) => {
       this.collection.get().subscribe((query) => {
-        let dsKhach: KhachHang[] = []
+        let dsKhach: Xe[] = []
 
         query.docs.map((doc) => {
-          let khach = doc.data() as KhachHang;
+          let xe = doc.data() as Xe;
           let valid = true;
 
-          if (!khach.Ma.includes(ma)) valid = false;
-          if (!khach.SoDienThoai.includes(sdt)) valid = false;
-          if (!khach.Ten.includes(ten)) valid = false;
-          if (!(khach.GioiTinh == gt)) valid = false;
+          if (!xe.Ma.includes(ma)) valid = false;
+          if (!xe.Ten.includes(ten)) valid = false;
+          if (!(xe.GiaTheoGio == giaH)) valid = false;
+          if (!(xe.GiaTheoNgay == giaN)) valid = false;
+          if (!(xe.TinhTrang == tinhTrang)) valid = false;
 
-          if (khach.HienThi && valid)
-            dsKhach.push(khach)
+          if (xe.HienThi && valid)
+            dsKhach.push(xe)
         })
 
         resolve(dsKhach)
@@ -141,13 +137,13 @@ export class KhachHangService {
     })
   }
 
-  readLive(id: string): Observable<KhachHang> {
-    return this.collection.doc<KhachHang>(id)
+  readLive(id: string): Observable<Xe> {
+    return this.collection.doc<Xe>(id)
       .snapshotChanges()
       .pipe(map(
         (doc) => {
           if (doc.payload.exists) {
-              const data = doc.payload.data() as KhachHang;
+              const data = doc.payload.data() as Xe;
               const payloadMa = doc.payload.id;
               return { Ma: payloadMa, ...data };
           }
@@ -155,13 +151,13 @@ export class KhachHangService {
       ))
   }
 
-  readAllLive(id: string): Observable<KhachHang[]> {
+  readAllLive(id: string): Observable<Xe[]> {
     return this.collection
       .snapshotChanges()
       .pipe(map(
         (changes) => {
           return changes.map((change) => {
-            const data = change.payload.doc.data() as KhachHang;
+            const data = change.payload.doc.data() as Xe;
             data.Ma = change.payload.doc.id;
             return data;
           })

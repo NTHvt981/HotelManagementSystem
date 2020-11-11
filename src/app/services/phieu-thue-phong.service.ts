@@ -41,6 +41,19 @@ export class PhieuThuePhongService {
     })
   }
 
+  setTrangThai(id: string, newState: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.collection.doc(id).update({
+        TinhTrang: newState
+      })
+        .then(() =>
+          resolve(newState)
+        )
+        .catch((reason) => 
+          reject(reason as string)
+        )
+    })
+  }
 
   /**
    * read data section
@@ -113,33 +126,5 @@ export class PhieuThuePhongService {
         resolve(dsphieuThue)
       })
     })
-  }
-
-  readLive(id: string): Observable<PhieuThuePhong> {
-    return this.collection.doc<PhieuThuePhong>(id)
-      .snapshotChanges()
-      .pipe(map(
-        (doc) => {
-          if (doc.payload.exists) {
-              const data = doc.payload.data() as PhieuThuePhong;
-              const payloadMa = doc.payload.id;
-              return { Ma: payloadMa, ...data };
-          }
-        }
-      ))
-  }
-
-  readAllLive(id: string): Observable<PhieuThuePhong[]> {
-    return this.collection
-      .snapshotChanges()
-      .pipe(map(
-        (changes) => {
-          return changes.map((change) => {
-            const data = change.payload.doc.data() as PhieuThuePhong;
-            data.Ma = change.payload.doc.id;
-            return data;
-          })
-        }
-      ))
   }
 }

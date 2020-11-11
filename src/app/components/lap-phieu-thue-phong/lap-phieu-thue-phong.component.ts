@@ -1,8 +1,13 @@
+import { PhieuThuePhongService } from './../../services/phieu-thue-phong.service';
+import { NhanVienService } from './../../services/nhan-vien.service';
+import { PhongService } from './../../services/phong.service';
+import { KhachHangService } from './../../services/khach-hang.service';
 import { Router } from '@angular/router';
 import { NhanVien } from './../../models/nhan-vien';
 import { KhachHang } from './../../models/khach-hang';
 import { LoaiPhongOptions, Phong } from './../../models/phong';
 import { Component, OnInit } from '@angular/core';
+import { PhieuThuePhong } from 'src/app/models/phieu-thue-phong';
 
 @Component({
   selector: 'app-lap-phieu-thue-phong',
@@ -13,6 +18,7 @@ export class LapPhieuThuePhongComponent implements OnInit {
   khachHang: KhachHang = new KhachHang();
   phong: Phong = new Phong();
   nhanVien: NhanVien = new NhanVien();
+  phieuThue: PhieuThuePhong = new PhieuThuePhong();
 
   loaiOptions = LoaiPhongOptions;
 
@@ -21,10 +27,15 @@ export class LapPhieuThuePhongComponent implements OnInit {
   gioThue: number = 0;
   ngayThue: number = 0;
 
-  constructor(private router:Router) {
-
+  constructor(
+    private router:Router,
+    private khachS: KhachHangService,
+    private phongS: PhongService,
+    private nhanVienS: NhanVienService,
+    private thueS: PhieuThuePhongService
+    ) {
   }
-
+  
   ngOnInit(): void {
     // if (history.state.data == undefined)
     //   this.router.navigateByUrl('/tra-cuu-khach')
@@ -37,18 +48,8 @@ export class LapPhieuThuePhongComponent implements OnInit {
     /**
      * for debug
      */
-    this.nhanVien = new NhanVien({
-      Ma: '1000',
-      Ten: 'Trần Thị B',
-      GioiTinh: 'Nữ',
-      ChucVu: 'Nhân viên quản lý',
-      Luong: 18_000_000,
-      SoDienThoai: '123-4560-789'
-    })
-
-
-    console.log(this.khachHang)
-    console.log(this.phong)
+    this.nhanVienS.readOnce('NV160-505-900-1131')
+      .then((nv) => this.nhanVien = nv)
   }
 
   setNgayTra($event) {
@@ -63,7 +64,17 @@ export class LapPhieuThuePhongComponent implements OnInit {
   }
 
   xacNhanThue($event) {
-    this.gioThue += 1
-    this.ngayThue += 1
+    this.phieuThue.ThoiGianThue = this.thoiGianThue;
+    this.phieuThue.ThoiGianTra = this.thoiGianTra;
+    this.phieuThue.GioThue = this.gioThue;
+    this.phieuThue.NgayThue = this.ngayThue;
+
+    this.phieuThue.MaKhach = this.khachHang.Ma;
+    this.phieuThue.MaPhong = this.phong.Ma;
+    this.phieuThue.MaLeTan = this.nhanVien.Ma;
+
+    this.thueS.create(this.phieuThue);
+    this.khachS.setTrangThai(this.khachHang.Ma, 'Đang thuê');
+    this.phongS.setTrangThai(this.phong.Ma, 'Đang thuê');
   }
 }

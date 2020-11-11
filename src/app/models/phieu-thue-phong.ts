@@ -1,28 +1,28 @@
 import { SelectItem } from 'primeng/api';
 
 export class PhieuThuePhong {
-    Ma: string;
-    MaKhach: string;
-    MaPhong: string;
-    MaLeTan: string;
+    Ma: string = '';
+    MaKhach: string = '';
+    MaPhong: string = '';
+    MaLeTan: string = '';
 
-    ThoiGianThue: Date;
-    ThoiGianTra: Date;
-    GioThue: number;
-    NgayThue: number;
-    TinhTrang: string;
+    ThoiGianThue: Date = new Date();
+    ThoiGianTra: Date = new Date();
+    GioThue: number = 0;
+    NgayThue: number = 0;
+    TinhTrang: string = 'Chưa thanh toán';
+    HienThi = true;
 
     public constructor(init?:Partial<PhieuThuePhong>) {
         Object.assign(this, init);
+        
+        let timeSec = (new Date()).valueOf().toString();
+        this.Ma = 'PTP' + 
+          timeSec.substring(0, 3) + '-' +
+          timeSec.substring(3, 6) + '-' +
+          timeSec.substring(6, 9) + '-' +
+          timeSec.substr(9);
     }
-    
-    protected static SInit = (() => {
-        PhieuThuePhong.prototype.ThoiGianThue = new Date();
-        PhieuThuePhong.prototype.ThoiGianTra = new Date();
-        PhieuThuePhong.prototype.GioThue = 0;
-        PhieuThuePhong.prototype.NgayThue = 0;
-        PhieuThuePhong.prototype.TinhTrang = "Chưa thanh toán";
-    })();
 }
 
 var TinhTrangOptions: SelectItem[] = [

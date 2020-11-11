@@ -14,16 +14,15 @@ export class ThemKhachComponent implements OnInit {
   khachHang: KhachHang = new KhachHang();
   imgSrc: string = "https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg";
 
-  constructor(private service: KhachHangService, private storage: ImageService) { }
+  constructor(private database: KhachHangService, private imgStorage: ImageService) { }
 
   ngOnInit(): void {
-    this.khachHang.Ma = this.service.getNewId();
     console.log(this.khachHang);
   }
 
   onImageUpload($event) {
     // console.log($event)
-    this.storage.uploadImage('khách hàng', $event.files[0])
+    this.imgStorage.uploadImage('khách hàng', $event.files[0])
       .downloadUrl$.then((value) => {
         console.log('upload complete!')
         console.log(value)
@@ -31,14 +30,14 @@ export class ThemKhachComponent implements OnInit {
         /**
          * set image view
          */
-        this.storage.getImageUrl(value).subscribe((next) => {
+        this.imgStorage.getImageUrl(value).subscribe((next) => {
           this.khachHang.HinhAnh = next;
         })
       })
   }
 
   them($event) {
-    this.service.create(this.khachHang).then((value) => console.log(value))
+    this.database.create(this.khachHang).then((value) => console.log(value))
     // console.log(this.khachHang);
   }
 }

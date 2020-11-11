@@ -1,24 +1,32 @@
 import { SelectItem } from 'primeng/api';
 
 export class Phong {
-    Ma: string;
-    SoPhong: string;
+    Ma: string = '';
+    SoPhong: string = '';
 
-    SoTang: number;
-    SoGiuong: number;
+    SoTang: number = 0;
+    SoGiuong: number = 0;
 
-    LoaiPhong: string;
+    LoaiPhong: string = 'Bình dân';
 
-    GiaTheoGio: number;
-    GiaTheoNgay: number;
-    TinhTrang: string;
+    GiaTheoGio: number = 0;
+    GiaTheoNgay: number = 0;
+    TinhTrang: string = 'Không thuê';
+
+    HinhAnh = 'https://winaero.com/blog/wp-content/uploads/2018/08/Windows-10-user-icon-big.png';
+    HienThi = true;
     
     public constructor(init?:Partial<Phong>) {
+        let timeSec = (new Date()).valueOf().toString();
+        
+        this.Ma = 'P' + 
+          timeSec.substring(0, 3) + '-' +
+          timeSec.substring(3, 6) + '-' +
+          timeSec.substring(6, 9) + '-' +
+          timeSec.substr(9);
+
         Object.assign(this, init);
     }
-    protected static SInit = (() => {
-        Phong.prototype.TinhTrang = "Không thuê";
-    })();
 }
 
 var LoaiPhongOptions:SelectItem[] = [

@@ -1,3 +1,5 @@
+import { ImageService } from './../../services/image.service';
+import { PhongService } from './../../services/phong.service';
 import { KhachHang } from './../../models/khach-hang';
 import { Phong } from './../../models/phong';
 import { Component, OnInit } from '@angular/core';
@@ -24,60 +26,38 @@ export class TraCuuPhongComponent implements OnInit {
   loaiOptions = LoaiPhongOptions;
   tinhTrangOptions = TinhTrangOptions;
 
-  phongs: Phong[] = [];
+  dsPhong: Phong[] = [];
   selectedPhong: Phong;
 
   khachHangThue: KhachHang = undefined;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: PhongService) { }
 
   ngOnInit(): void {
-    /**
-     * for debug
-     */
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.phongs.push(new Phong({
-          Ma: (100 + i*i).toString(),
-          SoPhong: "403",
-          SoGiuong: 2,
-          SoTang: 4,
-
-          LoaiPhong: "Bình dân",
-          GiaTheoGio: 30_000,
-          GiaTheoNgay: 300_000
-          })
-        );
-      } else {
-        this.phongs.push(new Phong({
-          Ma: (100 + i*i).toString(),
-          SoPhong: "130",
-          SoGiuong: 3,
-          SoTang: 1,
-
-          LoaiPhong: "Thương gia",
-          GiaTheoGio: 60_000,
-          GiaTheoNgay: 600_000
-          })
-        );
-      }
-    }
-
+    this.taiLai(null)
 
     //check if data sent have khach hang
     if (history.state.data != undefined) {
       this.khachHangThue = history.state.data.khachHang;
       console.log(this.khachHangThue);
     }
-
   }
 
   timKiem($event) {
-
+    this.database.readAllOnceBy(
+      this.ma, this.soPhong,
+      this.soTang, this.soGiuong,
+      this.giaGio, this.giaNgay,
+      this.loaiPhong, this.tinhTrang
+    ).then((dsP) => {
+      this.dsPhong = dsP;
+    })
   }
 
   taiLai($event) {
-
+    this.database.readAllOnce().then((dsP) => {
+      this.dsPhong = dsP;
+    })
   }
 
   onSelect($event) {

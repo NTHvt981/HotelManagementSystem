@@ -70,6 +70,20 @@ export class KhachHangService {
     })
   }
 
+  setTrangThai(id: string, newState: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.collection.doc(id).update({
+        TinhTrang: newState
+      })
+        .then(() =>
+          resolve(newState)
+        )
+        .catch((reason) => 
+          reject(reason as string)
+        )
+    })
+  }
+
 
   /**
    * read data section

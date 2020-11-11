@@ -1,8 +1,8 @@
 <div class="p-fluid p-formgrid p-grid">
-    <div class="p-col">
+    <div class="p-col-6">
         <p-card styleClass="p-card-shadow">
             <p-header>
-                <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+                <img alt="Card" src="{{phong.HinhAnh}}">
             </p-header>
             <ng-template pTemplate="footer">
                 <p-fileUpload  name="demo[]" mode="basic"
@@ -14,7 +14,7 @@
         </p-card>
     </div>
 
-    <div class="p-col">
+    <div class="p-col-6">
         <div class="p-field">
             <label for="ma">Mã</label>
             <input id="ma" [(ngModel)]="phong.Ma" type="text" pInputText disabled> 

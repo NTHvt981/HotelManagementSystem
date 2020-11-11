@@ -1,3 +1,4 @@
+import { PhieuThuePhongService } from './../../services/phieu-thue-phong.service';
 import { Router } from '@angular/router';
 import { PhieuThuePhong, TinhTrangOptions as ttThueOptions } from './../../models/phieu-thue-phong';
 import { Component, OnInit } from '@angular/core';
@@ -26,40 +27,30 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
 
   tinhTrangOptions = ttThueOptions;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: PhieuThuePhongService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.dsPhieuThue.push(new PhieuThuePhong({
-          Ma: (1000 + i*i).toString(),
-          MaKhach: "1000",
-          MaPhong: "1001",
-          MaLeTan: "1004",
-
-          ThoiGianTra: new Date(),
-          GioThue: 7
-        }));
-      } else {
-        this.dsPhieuThue.push(new PhieuThuePhong({
-          Ma: (1000 + i*i).toString(),
-          MaKhach: "1009",
-          MaPhong: "1016",
-          MaLeTan: "1025",
-
-          ThoiGianTra: new Date(),
-          NgayThue: 2
-        }));
-      }
-    }
+    this.taiLai(null);
   }
 
   timKiem($event) {
-
+    this.database.readAllOnceBy(
+      this.maThue,
+      this.tgThue, this.tgTra,
+      this.maKhach, this.maPhong, this.maLeTan,
+      this.tinhTrang,
+      this.ngayThue, this.gioThue
+    )
+      .then((dsPTP) => {
+        this.dsPhieuThue = dsPTP;
+      })
   }
 
   taiLai($event) {
-
+    this.database.readAllOnce()
+      .then((dsPTP) => {
+        this.dsPhieuThue = dsPTP;
+      })
   }
 
   onSelect($event) {

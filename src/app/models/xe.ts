@@ -1,20 +1,22 @@
 export class Xe {
     Ma: string;
-    Ten: string;
-    HinhAnh: string;
-    GiaTheoGio: number;
-    GiaTheoNgay: number;
-    TinhTrang: string;
+    Ten: string = '';
+    HinhAnh: string = '';
+    GiaTheoGio: number = 0;
+    GiaTheoNgay: number = 0;
+    TinhTrang: string = 'Không thuê';
+    HienThi: boolean = true;
 
     public constructor(init?:Partial<Xe>) {
         Object.assign(this, init);
+        
+        let timeSec = (new Date()).valueOf().toString();
+        this.Ma = 'XE' + 
+          timeSec.substring(0, 3) + '-' +
+          timeSec.substring(3, 6) + '-' +
+          timeSec.substring(6, 9) + '-' +
+          timeSec.substr(9);
     }
-    
-    protected static SInit = (() => {
-        Xe.prototype.GiaTheoGio = 0;
-        Xe.prototype.GiaTheoNgay = 0;
-        Xe.prototype.TinhTrang = "Không thuê";
-      })();
 }
 
 var TinhTrangOptions = [

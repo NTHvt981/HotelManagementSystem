@@ -67,7 +67,7 @@
         (onClick)="taiLai($event)"></p-button>
 </div>
 
-<p-table [value]="phongs" selectionMode="single" 
+<p-table [value]="dsPhong" selectionMode="single" 
 [(selection)]="selectedPhong" dataKey="Ma" [paginator]="true" [rows]="10"
 (onRowSelect)="onSelect($event)">
     <ng-template pTemplate="header">

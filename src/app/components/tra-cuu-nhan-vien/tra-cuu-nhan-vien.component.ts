@@ -1,3 +1,4 @@
+import { NhanVienService } from './../../services/nhan-vien.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NhanVien } from "../../models/nhan-vien";
@@ -15,33 +16,13 @@ export class TraCuuNhanVienComponent implements OnInit {
   maNhanVien: string = "";
   tenNhanVien: string = "";
 
-  nhanViens: NhanVien[] = [];
+  dsNhanVien: NhanVien[] = [];
   selectedNhanVien: NhanVien;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: NhanVienService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.nhanViens.push(new NhanVien({
-          Ma: (i*i + 1000).toString(),
-          Ten: 'Nguyễn Hoàng A',
-          GioiTinh: 'Nam',
-          ChucVu: 'Nhân viên thức ăn',
-          Luong: 12_000_0,
-          SoDienThoai: '123-4560-789'
-        }));
-      } else {
-        this.nhanViens.push(new NhanVien({
-          Ma: (i*i + 1000).toString(),
-          Ten: 'Trần Thị B',
-          GioiTinh: 'Nữ',
-          ChucVu: 'Nhân viên quản lý',
-          Luong: 18_000_0,
-          SoDienThoai: '123-4560-789'
-        }));
-      }
-    }
+    this.taiLai(null)
   }
 
   onSelect($event) {
@@ -52,12 +33,8 @@ export class TraCuuNhanVienComponent implements OnInit {
   }
 
   xoa($event) {
-    if (this.selectedNhanVien == null) return;
-
-    let index = this.nhanViens.indexOf(this.selectedNhanVien, 0);
-    if (index > -1) {
-      this.nhanViens.splice(index, 1);
-    }
+    this.database.delete(this.selectedNhanVien.Ma);
+    this.taiLai(null);
   }
 
   xemChiTiet($event) {
@@ -70,28 +47,24 @@ export class TraCuuNhanVienComponent implements OnInit {
   }
 
   timKiem($event) {
-    console.log("Tìm kiếm!");
-
-    let _nhanViens: NhanVien[] = [];
-
-    this.nhanViens.forEach((nv, i) => {
-      if (
-        nv.Ma.includes(this.maNhanVien) &&
-        nv.Ten.includes(this.tenNhanVien) &&
-        nv.GioiTinh.includes(this.gtNhanVien) &&
-        nv.SoDienThoai.includes(this.sdtNhanVien)
-        )
-        _nhanViens.push(nv);
-    })
-
-    this.nhanViens = _nhanViens;
+    this.database.readAllOnceBy(
+      this.maNhanVien, this.tenNhanVien,
+      this.gtNhanVien, this.sdtNhanVien
+      ).then((dsNv) => {
+        this.dsNhanVien = dsNv;
+      })
   }
 
   taiLai($event) {
-    this.maNhanVien = null;
-    this.tenNhanVien = null;
-    this.sdtNhanVien = null;
-    this.gtNhanVien = null;
+    this.maNhanVien = '';
+    this.tenNhanVien = '';
+    this.sdtNhanVien = '';
+    
+    this.database.readAllOnce(
+      
+    ).then((dsNv) => {
+        this.dsNhanVien = dsNv;
+      })
   }
 
   tinhLuong($event) {

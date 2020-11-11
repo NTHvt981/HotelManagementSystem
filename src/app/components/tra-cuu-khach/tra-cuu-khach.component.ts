@@ -20,49 +20,18 @@ export class TraCuuKhachComponent implements OnInit {
   cmnd: string = "";
   tinhTrang: string = "";
 
-  tinhTrangOptions: SelectItem[];
+  tinhTrangOptions: SelectItem[] = [
+    {label: 'Không thuê', value:'Không thuê'},
+    {label: 'Đang thuê', value:'Đang thuê'},
+  ];
 
   khachHangs: KhachHang[] = [];
   selectedKh: KhachHang;
 
   constructor(private router: Router, 
-    private service: KhachHangService) { }
+    private database: KhachHangService) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      if (i % 2 == 1) {
-        this.khachHangs.push(new KhachHang({
-          Ma: (i*i + 1000).toString(),
-          Ten: 'Nguyễn Thanh D',
-          GioiTinh: 'Nam',
-          SoDienThoai: '123-4560-789',
-
-          Cmnd: '07520340',
-          TinhTrang: 'Không thuê'
-        }));
-      } else {
-        this.khachHangs.push(new KhachHang({
-          Ma: (i*i + 1000).toString(),
-          Ten: 'Phúc Lộc C',
-          GioiTinh: 'Nữ',
-          SoDienThoai: '123-4560-789',
-          
-          Cmnd: '07520340',
-          TinhTrang: 'Đang thuê'
-        }));
-      }
-    }
-
-
-    this.tinhTrangOptions = [
-      {label: 'Không thuê', value:'Không thuê'},
-      {label: 'Đang thuê', value:'Đang thuê'},
-    ]
-
-    this.service.readAllOnce().then(khachs => {
-      console.log(khachs)
-    })
-
     this.taiLai(null);
   }
 
@@ -77,14 +46,19 @@ export class TraCuuKhachComponent implements OnInit {
   }
 
   timKiem($event) { 
-    this.service.readAllOnceBy(this.ma, this.ten, this.gioiTinh, this.sdt)
+    this.database.readAllOnceBy(this.ma, this.ten, this.gioiTinh, this.sdt)
     .then(khachs => {
       this.khachHangs = khachs
     })
   }
 
   taiLai($event) {
-    this.service.readAllOnce().then(khachs => {
+    this.ma = '';
+    this.ten =  '';
+    this.sdt =  '';
+    this.gioiTinh =  '';
+
+    this.database.readAllOnce().then(khachs => {
       this.khachHangs = khachs
     })
   }
@@ -110,7 +84,7 @@ export class TraCuuKhachComponent implements OnInit {
   }
 
   xoa($event) {
-    this.service.erase(this.selectedKh.Ma);
+    this.database.erase(this.selectedKh.Ma);
     this.taiLai(null);
   }
 }

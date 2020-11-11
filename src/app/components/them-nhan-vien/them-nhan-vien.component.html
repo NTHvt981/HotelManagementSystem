@@ -1,5 +1,3 @@
-{{nhanVien | json}}
-
 <div class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-4">
         <label for="maNhanVien">Mã</label>
@@ -33,7 +31,7 @@
     <div class="p-col-4">
     <p-card header="{{nhanVien.Ten}}" subheader="{{nhanVien.ChucVu}}" styleClass="p-card-shadow">
         <p-header>
-            <img alt="Card" src="https://financemd.files.wordpress.com/2015/08/facebook-default-no-profile-pic.jpg">
+            <img alt="Card" src="{{nhanVien.HinhAnh}}">
         </p-header>
         <ng-template pTemplate="footer">
             <p-fileUpload  name="demo[]" mode="basic"
@@ -46,6 +44,11 @@
     </div>
     
     <div class="p-col-8">
+        <div class="p-field">
+            <label for="cmnd">CMND</label>
+            <input id="cmnd" [(ngModel)]="nhanVien.Cmnd" type="number" pInputText> 
+        </div>
+
         <div class="p-field">
             <label for="dcNhanVien">Địa chỉ</label>
             <textarea pInputTextarea id="dcNhanVien" [(ngModel)]="nhanVien.DiaChi" 
@@ -68,7 +71,13 @@
             </div>
             <div class="p-field-radiobutton">
             <p-radioButton name="chucVu" 
-                value="Nhân viên dịch vụ" label="Nhân viên dịch vụ"
+                value="Nhân viên thức ăn" label="Nhân viên phục vụ thức ăn"
+                [(ngModel)]="nhanVien.ChucVu" 
+                inputId="dv"></p-radioButton>
+            </div>
+            <div class="p-field-radiobutton">
+            <p-radioButton name="chucVu" 
+                value="Nhân viên thuê xe" label="Nhân viên thuê xe"
                 [(ngModel)]="nhanVien.ChucVu" 
                 inputId="dv"></p-radioButton>
             </div>
@@ -76,8 +85,8 @@
         
         <div class="p-field">
             <label for="mucLuong">Mức lương</label>
-            <p-inputNumber id="mucLuong" [(ngModel)]="nhanVien.Luong"> </p-inputNumber>
-            <!-- <p-inputNumber [(ngModel)]="sdtNhanVien" [useGrouping]="false" disabled></p-inputNumber> -->
+            <p-inputNumber id="mucLuong" [(ngModel)]="nhanVien.Luong"
+            mode="currency" currency="VND"> </p-inputNumber>
         </div>
 
         <!-- sửa nhân viên -->

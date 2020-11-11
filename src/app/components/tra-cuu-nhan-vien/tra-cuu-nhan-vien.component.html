@@ -1,9 +1,4 @@
     <!-- for debug -->
-mã: {{maNhanVien}} <br>
-tên: {{tenNhanVien}} <br>
-giới tính: {{gtNhanVien}} <br>
-sđt {{sdtNhanVien}} <br> 
-
 <div class="p-fluid p-formgrid p-grid p-ai-center">
     <div class="p-field p-col-4">
         <label for="maNhanVien">Mã</label>
@@ -53,11 +48,7 @@ sđt {{sdtNhanVien}} <br>
 
 
 <!-- Data table of nhan vien -->
-
-<!-- for debug -->
-{{selectedNhanVien | json}}
-
-<p-table [value]="nhanViens" selectionMode="single" 
+<p-table [value]="dsNhanVien" selectionMode="single" 
 [(selection)]="selectedNhanVien" dataKey="Ma" [paginator]="true" [rows]="10"
 (onRowSelect)="onSelect($event)">
     <ng-template pTemplate="header">

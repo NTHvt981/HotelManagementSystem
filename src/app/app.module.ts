@@ -56,6 +56,8 @@ import { ThongTinCaNhanComponent } from './components/thong-tin-ca-nhan/thong-ti
 import { TinhLuongNhanVienComponent } from './components/tinh-luong-nhan-vien/tinh-luong-nhan-vien.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { DangNhapComponent } from './components/dang-nhap/dang-nhap.component';
+import { DangKyComponent } from './components/dang-ky/dang-ky.component';
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     LapPhieuThueXeComponent,
     LapHoaDonComponent,
     ThongTinCaNhanComponent,
-    TinhLuongNhanVienComponent
+    TinhLuongNhanVienComponent,
+    DangNhapComponent,
+    DangKyComponent
   ],
   imports: [
     BrowserModule,

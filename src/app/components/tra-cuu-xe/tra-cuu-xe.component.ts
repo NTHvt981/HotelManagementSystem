@@ -1,9 +1,12 @@
+import { AuthService } from './../../services/auth.service';
 import { XeService } from './../../services/xe.service';
 import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { Xe } from './../../models/xe';
 import { Component, OnInit } from '@angular/core';
 import { TinhTrangOptions } from 'src/app/models/xe';
+import { isLeTan, isQuanLy, isThucAn, isThueXe } from 'src/app/services/auth.service';
+import { NhanVien } from 'src/app/models/nhan-vien';
 
 @Component({
   selector: 'app-tra-cuu-xe',
@@ -24,10 +27,20 @@ export class TraCuuXeComponent implements OnInit {
   tinhTrangOptions = TinhTrangOptions;
   
   phieuThuePhong: PhieuThuePhong;
+  
+  user: NhanVien = new NhanVien();
 
-  constructor(private router: Router, private database: XeService) { }
+  isLeTan = isLeTan;
+  isQuanLy = isQuanLy;
+  isThucAn = isThucAn;
+  isThueXe = isThueXe;
+
+  constructor(private router: Router, 
+    private database: XeService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(val => this.user = val)
     this.taiLai(null);
 
     if (history.state.data != undefined)

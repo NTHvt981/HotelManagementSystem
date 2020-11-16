@@ -1,3 +1,5 @@
+import { NhanVienService } from './../../services/nhan-vien.service';
+import { AuthService } from './../../services/auth.service';
 import { NhanVien } from './../../models/nhan-vien';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,24 +12,23 @@ export class ThongTinCaNhanComponent implements OnInit {
   nhanVien: NhanVien;
   editable: boolean = false;
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private database: NhanVienService
+  ) { }
 
   ngOnInit(): void {
     this.getNhanVien();
   }
 
   getNhanVien() {
-    this.nhanVien = new NhanVien({
-      Ma: (1000).toString(),
-      Ten: 'Nguyễn Hoàng A',
-      GioiTinh: 'Nam',
-      ChucVu: 'Nhân viên thức ăn',
-      Luong: 12_000_000,
-      SoDienThoai: '123-4560-789'
+    this.auth.user.subscribe(next => {
+      this.nhanVien = next;
     })
   }
   
   chinhSua($event) {
-
+    this.database.update(this.nhanVien)
+      .then((val) => console.log(val));
   }
 }

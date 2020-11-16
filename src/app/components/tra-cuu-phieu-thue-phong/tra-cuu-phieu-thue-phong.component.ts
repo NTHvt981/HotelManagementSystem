@@ -1,7 +1,9 @@
+import { AuthService, isLeTan, isThucAn, isThueXe } from './../../services/auth.service';
 import { PhieuThuePhongService } from './../../services/phieu-thue-phong.service';
 import { Router } from '@angular/router';
 import { PhieuThuePhong, TinhTrangOptions as ttThueOptions } from './../../models/phieu-thue-phong';
 import { Component, OnInit } from '@angular/core';
+import { NhanVien } from 'src/app/models/nhan-vien';
 
 @Component({
   selector: 'app-tra-cuu-phieu-thue-phong',
@@ -12,6 +14,7 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
   editable = false;
   dsPhieuThue: PhieuThuePhong[] = [];
   selectedPhieuThue: PhieuThuePhong;
+  user: NhanVien = new NhanVien();
 
   maThue: string;
   tgThue: Date;
@@ -27,10 +30,18 @@ export class TraCuuPhieuThuePhongComponent implements OnInit {
 
   tinhTrangOptions = ttThueOptions;
 
-  constructor(private router: Router, private database: PhieuThuePhongService) { }
+  isThueXe = isThueXe;
+  isThucAn = isThucAn;
+  isLeTan = isLeTan;
+
+  constructor(private router: Router, 
+    private database: PhieuThuePhongService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.taiLai(null);
+
+    this.auth.user.subscribe(val => this.user = val)
   }
 
   timKiem($event) {

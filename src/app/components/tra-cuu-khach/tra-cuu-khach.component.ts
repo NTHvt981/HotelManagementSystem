@@ -1,8 +1,11 @@
+import { AuthService, isQuanLy } from './../../services/auth.service';
+import { NhanVien } from 'src/app/models/nhan-vien';
 import { KhachHangService } from './../../services/khach-hang.service';
 import { KhachHang } from './../../models/khach-hang';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
+import { isLeTan } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-tra-cuu-khach',
@@ -11,6 +14,7 @@ import { SelectItem } from 'primeng/api';
 })
 export class TraCuuKhachComponent implements OnInit {
   editable: boolean = false;
+  user: NhanVien = new NhanVien();
   
   ma: string = "";
   ten: string = "";
@@ -28,11 +32,17 @@ export class TraCuuKhachComponent implements OnInit {
   khachHangs: KhachHang[] = [];
   selectedKh: KhachHang;
 
+  isLeTan = isLeTan;
+  isQuanLy = isQuanLy;
+
   constructor(private router: Router, 
-    private database: KhachHangService) { }
+    private database: KhachHangService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.taiLai(null);
+    
+    this.auth.user.subscribe(val => this.user = val)
   }
 
   onSelect($event) {

@@ -1,1 +1,20 @@
-<p>dang-ky works!</p>
+<h1>Đăng ký</h1>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12">
+        <label for="id">Nhân viên id</label>
+        <input id="id" [(ngModel)]="id" type="text" pInputText> 
+    </div>
+    <div class="p-field p-col-12">
+        <label for="email">Email</label>
+        <input id="email" [(ngModel)]="email" type="email" pInputText> 
+    </div>
+    <div class="p-field p-col-12">
+        <label for="password">Mật khẩu</label>
+        <input id="password" [(ngModel)]="password" type="password" pInputText > 
+    </div>
+</div>
+
+<div class="p-d-flex p-jc-end p-ai-center">
+    <p-button label="Đăng ký"  class="p-m-2"  
+        (onClick)="dangKy($event)"></p-button>
+</div>

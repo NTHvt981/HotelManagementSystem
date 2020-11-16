@@ -32,4 +32,5 @@ export class NhanVien {
 
         this.NgaySinh = randomDate('01/01/1950', '01/01/2000')
     }
+    
 }

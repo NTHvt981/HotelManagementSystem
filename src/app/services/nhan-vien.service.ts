@@ -1,3 +1,4 @@
+import { PhieuTinhLuong } from './../models/phieu-tinh-luong';
 import { Observable } from 'rxjs';
 import { NhanVien } from './../models/nhan-vien';
 import { Injectable } from '@angular/core';
@@ -10,9 +11,11 @@ import { map } from 'rxjs/operators';
 })
 export class NhanVienService {
   private collection: AngularFirestoreCollection<NhanVien>
+  private luongCollection: AngularFirestoreCollection<PhieuTinhLuong>
 
   constructor(private firestore: AngularFirestore) {
-    this.collection = this.firestore.collection('nhân viên')
+    this.collection = this.firestore.collection('nhân viên');
+    this.luongCollection = this.firestore.collection('phiếu tính lương');
   }
 
   create(nhanVien: NhanVien): Promise<NhanVien> {
@@ -24,6 +27,20 @@ export class NhanVienService {
         .catch((err) => 
           reject(err as string)
         )
+    })
+  }
+
+  asignUid(id: string, _uid: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.collection.doc(id).update({
+        uid: _uid
+      })
+      .then(() =>
+        resolve('gán uid thành công')
+      )
+      .catch((reason) => 
+        reject(reason as string)
+      )
     })
   }
 
@@ -123,31 +140,24 @@ export class NhanVienService {
     })
   }
 
-  readLive(id: string): Observable<NhanVien> {
-    return this.collection.doc<NhanVien>(id)
-      .snapshotChanges()
-      .pipe(map(
-        (doc) => {
-          if (doc.payload.exists) {
-              const data = doc.payload.data() as NhanVien;
-              const payloadMa = doc.payload.id;
-              return { Ma: payloadMa, ...data };
-          }
-        }
-      ))
+  createPhieuTinhLuong(phieu: PhieuTinhLuong): Promise<PhieuTinhLuong> {
+    return new Promise<PhieuTinhLuong>((resolve, reject)=>{
+      this.luongCollection.doc(phieu.Ma).set(firebaseSerialize(phieu))
+      .then(() => resolve(phieu))
+      .catch((reason) => reject(reason))
+    })
   }
 
-  readAllLive(id: string): Observable<NhanVien[]> {
-    return this.collection
-      .snapshotChanges()
-      .pipe(map(
-        (changes) => {
-          return changes.map((change) => {
-            const data = change.payload.doc.data() as NhanVien;
-            data.Ma = change.payload.doc.id;
-            return data;
-          })
-        }
-      ))
+  getNgayTraLuongGanNhat(id: string): Promise<PhieuTinhLuong> {
+    return new Promise<PhieuTinhLuong>((resolve, reject)=>{
+      this.luongCollection.ref
+      .where('MaNhanVien', '==', id)
+      .orderBy('NgayTraLuong', 'desc')
+      .limit(1)
+      .get().then(val => {
+        resolve(val.docs[0].data() as PhieuTinhLuong)
+      })
+      .catch((reason) => reject(reason))
+    })
   }
 }

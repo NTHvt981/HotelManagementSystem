@@ -92,13 +92,20 @@
 
     
 <div class="p-d-flex p-jc-end">
-    <p-button label="Lập phiếu thuê phòng" class="p-m-2" 
+    <p-button *ngIf="isLeTan(user)" 
+        label="Lập phiếu thuê phòng" class="p-m-2" 
         (onClick)="lapPhieuThue($event)"
         [(disabled)]="!selectedKh"></p-button>
-        <p-button label="Xóa"  class="p-m-2"  
-            (onClick)="xoa($event)"
-            [(disabled)]="!selectedKh"></p-button>
+
+    <p-button  *ngIf="isLeTan(user)" label="Xóa"  class="p-m-2"  
+        (onClick)="xoa($event)"
+        [(disabled)]="!selectedKh"></p-button>
+
     <p-button label="Xem chi tiết"  class="p-m-2"  
         (onClick)="xemChiTiet($event)"
-        [(disabled)]="!selectedKh"></p-button>
+        [(disabled)]="!selectedKh"
+        
+        *ngIf="isLeTan(user) || isQuanLy(user)"
+
+        ></p-button>
 </div>

@@ -1,3 +1,5 @@
+import { DangKyComponent } from './components/dang-ky/dang-ky.component';
+import { DangNhapComponent } from './components/dang-nhap/dang-nhap.component';
 import { ThongTinCaNhanComponent } from './components/thong-tin-ca-nhan/thong-tin-ca-nhan.component';
 import { LapPhieuThueXeComponent } from './components/lap-phieu-thue-xe/lap-phieu-thue-xe.component';
 import { TraCuuPhieuThuePhongComponent } from './components/tra-cuu-phieu-thue-phong/tra-cuu-phieu-thue-phong.component';
@@ -29,6 +31,18 @@ import { LapHoaDonComponent } from './components/lap-hoa-don/lap-hoa-don.compone
 import { TinhLuongNhanVienComponent } from './components/tinh-luong-nhan-vien/tinh-luong-nhan-vien.component';
 
 const routes: Routes = [
+  
+  {
+    pathMatch: 'full',
+    path: 'dang-ky',
+    component: DangKyComponent
+  },
+  {
+    pathMatch: 'full',
+    path: 'dang-nhap',
+    component: DangNhapComponent
+  },
+
   {
     pathMatch: 'full',
     path: 'thong-tin-ca-nhan',

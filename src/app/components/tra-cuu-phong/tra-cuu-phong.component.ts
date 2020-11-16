@@ -1,3 +1,6 @@
+import { AuthService } from './../../services/auth.service';
+import { isLeTan, isQuanLy, isThucAn, isThueXe } from 'src/app/services/auth.service';
+import { NhanVien } from 'src/app/models/nhan-vien';
 import { ImageService } from './../../services/image.service';
 import { PhongService } from './../../services/phong.service';
 import { KhachHang } from './../../models/khach-hang';
@@ -30,10 +33,24 @@ export class TraCuuPhongComponent implements OnInit {
   selectedPhong: Phong;
 
   khachHangThue: KhachHang = undefined;
+  
+  user: NhanVien = new NhanVien();
 
-  constructor(private router: Router, private database: PhongService) { }
+  isLeTan = isLeTan;
+  isQuanLy = isQuanLy;
+  isThucAn = isThucAn;
+  isThueXe = isThueXe;
+
+
+  constructor(
+    private router: Router, 
+    private database: PhongService,
+    private auth: AuthService
+    ) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(val => this.user = val)
+
     this.taiLai(null)
 
     //check if data sent have khach hang

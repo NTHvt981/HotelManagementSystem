@@ -1,1 +1,16 @@
-<p>dang-nhap works!</p>
+<h1>Đăng nhập</h1>
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12">
+        <label for="email">Email</label>
+        <input id="email" [(ngModel)]="email" type="email" pInputText> 
+    </div>
+    <div class="p-field p-col-12">
+        <label for="password">Mật khẩu</label>
+        <input id="password" [(ngModel)]="password" type="password" pInputText > 
+    </div>
+</div>
+
+<div class="p-d-flex p-jc-end p-ai-center">
+    <p-button label="Đăng nhập"  class="p-m-2"  
+        (onClick)="dangNhap($event)"></p-button>
+</div>

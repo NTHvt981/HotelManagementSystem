@@ -1,8 +1,11 @@
+import { AuthService } from './../../services/auth.service';
 import { MonAnService } from './../../services/mon-an.service';
 import { PhieuThuePhong } from './../../models/phieu-thue-phong';
 import { Router } from '@angular/router';
 import { MonAn } from './../../models/mon-an';
 import { Component, OnInit } from '@angular/core';
+import { NhanVien } from 'src/app/models/nhan-vien';
+import { isLeTan, isQuanLy, isThucAn, isThueXe } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-tra-cuu-mon-an',
@@ -18,11 +21,21 @@ export class TraCuuMonAnComponent implements OnInit {
   ten: string;
   gia: number;
 
-  phieuThuePhong: PhieuThuePhong
+  phieuThuePhong: PhieuThuePhong;
+  
+  user: NhanVien = new NhanVien();
 
-  constructor(private router: Router, private database: MonAnService) { }
+  isLeTan = isLeTan;
+  isQuanLy = isQuanLy;
+  isThucAn = isThucAn;
+  isThueXe = isThueXe;
+
+  constructor(private router: Router, 
+    private database: MonAnService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(val => this.user = val)
     this.taiLai(null);
 
     if (history.state.data != undefined)
